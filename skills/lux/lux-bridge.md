@@ -1,0 +1,48 @@
+# Lux Bridge - Cross-Chain Messaging & Asset Transfer
+
+**Category**: Lux Ecosystem
+**Related Skills**: `lux/lux-node.md`, `lux/lux-evm.md`
+
+## Overview
+
+Lux Bridge enables **cross-chain messaging and asset transfer** between Lux subnets and external chains. Uses Warp messaging (V2 format) and Teleport for reliable cross-chain communication.
+
+## Components
+
+| Component | Path | Purpose |
+|-----------|------|---------|
+| bridge/ | ``github.com/luxfi/bridge`` | Core bridge protocol |
+| warp/ | ``github.com/luxfi/warp`` | Warp V2 Message Format |
+| teleport/ | ``github.com/luxfi/teleport`` | Cross-chain teleportation |
+
+## One-file quickstart
+
+```go
+import (
+    "github.com/luxfi/bridge"
+    "github.com/luxfi/warp"
+)
+
+// Create warp message
+msg := warp.NewMessage(warp.MessageArgs{
+    SourceChain: "C-Chain",
+    DestChain:   "my-subnet",
+    Payload:     transferPayload,
+})
+
+// Sign with validators
+signedMsg, _ := warp.Sign(msg, validatorSet)
+
+// Submit to destination chain
+txID, _ := bridge.Submit(ctx, signedMsg)
+```
+
+## Related Skills
+
+- `lux/lux-node.md` - Nodes relay warp messages
+- `lux/lux-evm.md` - C-Chain bridge contracts
+
+---
+
+**Last Updated**: 2026-03-13
+**Category**: Lux Ecosystem

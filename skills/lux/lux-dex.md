@@ -1,0 +1,104 @@
+# Lux DEX (LX) - Ultra-High Performance Order Matching
+
+**Category**: Lux Ecosystem
+**Related Skills**: `lux/lux-exchange.md`, `lux/lux-evm.md`, `lux/lux-accel.md`
+
+## Overview
+
+LX is an **ultra-high performance CLOB (Central Limit Order Book) DEX engine** with multi-engine order matching and GPU acceleration. This is a standalone order matching engine — NOT an AMM. Separate product from `luxfi/exchange`.
+
+**Performance**: 434M+ orders/sec (GPU/MLX), 2ns order latency (GPU), 487ns (CPU).
+
+## Quick reference
+
+| Item | Value |
+|------|-------|
+| Module | `github.com/luxfi/dex` |
+| Language | Go 1.26.1 + C++ + Rust + MLX (Apple Metal) |
+| License | Proprietary (Lux Industries Inc) |
+| Protocol | FIX (Financial Information eXchange) |
+
+## Matching Engines
+
+| Engine | Language | Performance |
+|--------|----------|-------------|
+| Pure Go | Go | 830K orders/sec |
+| C++ | C++ | 800K+ orders/sec |
+| Rust | Rust | 585K+ orders/sec |
+| MLX GPU | Metal/CUDA | **434M+ orders/sec** |
+
+### Latency
+
+| Mode | Order Latency |
+|------|---------------|
+| GPU (MLX) | **2ns** |
+| CPU | **487ns** |
+
+## Architecture
+
+```
+Client → FIX Protocol → Order Gateway
+                            ↓
+                    ┌───────────────┐
+                    │  Order Router  │
+                    └───────┬───────┘
+              ┌─────────────┼─────────────┐
+              ↓             ↓             ↓
+         ┌─────────┐  ┌─────────┐  ┌──────────┐
+         │ Go CLOB │  │ C++ CLOB│  │ GPU CLOB │
+         └─────────┘  └─────────┘  └──────────┘
+              ↓             ↓             ↓
+                    ┌───────────────┐
+                    │  Match Events  │
+                    └───────┬───────┘
+                            ↓
+                    ┌───────────────┐
+                    │  Settlement   │
+                    └───────────────┘
+```
+
+## FIX Protocol Support
+
+| Message | Type |
+|---------|------|
+| NewOrderSingle | Order submission |
+| ExecutionReport | Fill/cancel notifications |
+| MarketDataSnapshot | Order book snapshots |
+
+## Key Dependencies
+
+```
+github.com/luxfi/accel   — GPU/FPGA acceleration
+github.com/luxfi/czmq/v4 — ZeroMQ messaging
+github.com/luxfi/database — State storage
+github.com/luxfi/geth    — Ethereum types (luxfi, NOT go-ethereum)
+github.com/luxfi/rpc     — RPC layer
+nats-io/nats.go          — NATS messaging
+google.golang.org/grpc   — gRPC API
+```
+
+## Integration with Exchange
+
+The DEX engine integrates with `github.com/luxfi/exchange` via the DEX precompiles:
+
+| Precompile | Address | Purpose |
+|------------|---------|---------|
+| PoolManager | `0x0400` | AMM pool management |
+| SwapRouter | `0x0401` | Swap routing (AMM + CLOB) |
+| HooksRegistry | `0x0402` | Custom swap hooks |
+| FlashLoan | `0x0403` | Flash loan facility |
+
+Exchange routes limit/market orders to this CLOB engine for execution.
+
+## Related Skills
+
+- `lux/lux-exchange.md` — AMM frontend (routes orders to DEX)
+- `lux/lux-evm.md` — EVM with DEX precompiles
+- `lux/lux-accel.md` — GPU/FPGA acceleration
+
+---
+
+**Last Updated**: 2026-03-13
+**Category**: Lux Ecosystem
+**Related**: dex, clob, order-matching, high-frequency, gpu
+**Prerequisites**: Go, understanding of CLOB mechanics, FIX protocol

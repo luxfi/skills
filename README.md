@@ -1,89 +1,60 @@
-# Lux Cloud Skills
+# Lux Skills
 
-Agent Skills for integrating Lux Cloud blockchain APIs into AI-native workflows.
+Atomic skills for AI assistants working with the Lux blockchain ecosystem.
 
-## Skills
+## Overview
 
-### lux-api
+This skills repository provides comprehensive, progressively-disclosed knowledge about every component of the Lux blockchain stack. Skills are designed for Claude Code and other AI assistants to load on-demand when working with Lux projects.
 
-Use the traditional API-key approach for full-featured access to 100+ chains.
+## Structure
 
-- **Auth:** API key in header (`X-API-Key`) or URL path
-- **Setup:** Create free key at [cloud.lux.network/dashboard](https://cloud.lux.network/dashboard)
-- **Entry point:** `skills/lux-api/SKILL.md`
-
-### lux-gateway
-
-Keyless access via SIWE authentication + x402 USDC micropayments. No account needed.
-
-- **Auth:** SIWE token + x402 USDC payment per request
-- **Setup:** Generate wallet, fund with USDC on Base
-- **Entry point:** `skills/lux-gateway/SKILL.md`
-
-## Which skill should I use?
-
-| Scenario | Skill |
-|----------|-------|
-| I have a Lux Cloud API key | `lux-api` |
-| I want keyless access with USDC | `lux-gateway` |
-| Building a server-side app | `lux-api` |
-| Building an autonomous agent | `lux-gateway` |
-| Need webhooks or websockets | `lux-api` |
-| Need pay-per-request billing | `lux-gateway` |
-
-## Installation
-
-**Open standard** (works with any agent):
-```bash
-npx skills add luxfi/skills --yes
+```
+skills/
+├── lux/                    # Lux ecosystem product skills (30+)
+│   ├── INDEX.md            # Full skill catalog
+│   ├── lux-node.md         # Core validator node
+│   ├── lux-evm.md          # EVM execution engine
+│   ├── lux-consensus.md    # Snow consensus family
+│   └── ...
+├── discover-lux/           # Auto-discovery gateway skill
+│   └── SKILL.md
+└── _SKILL_TEMPLATE.md      # Template for new skills
 ```
 
-**Hanzo Bot** (installs to `~/.hanzo/skills/` and symlinks to all agents):
+## Progressive Loading
+
+1. **Tier 1 - Gateway** (`discover-lux/SKILL.md`): Auto-activates on Lux keywords, ~200 lines
+2. **Tier 2 - Index** (`lux/INDEX.md`): Full catalog with descriptions, ~500 lines
+3. **Tier 3 - Individual Skills** (`lux/*.md`): Deep-dive per component, ~300 lines each
+
+## Usage
+
 ```bash
-npx @hanzo/bot skills add luxfi/skills --yes
+# Auto-discovery (loaded by Claude Code on Lux keywords)
+cat skills/discover-lux/SKILL.md
+
+# Browse all Lux skills
+cat skills/lux/INDEX.md
+
+# Load specific skill
+cat skills/lux/lux-node.md
 ```
 
-Skills are installed to `~/.hanzo/skills/luxfi-skills/` and automatically symlinked to:
-- `~/.claude/skills/` (Claude Code)
-- `~/.agents/skills/` (Codex, Openclaw)
-- `~/.cursor/skills/` (Cursor)
-- `~/.hanzo/bot/skills/` (Hanzo Bot)
+## Key Principles
 
-## Available on all platforms
+- **luxfi packages only** — NEVER use go-ethereum or ava-labs imports
+- **NEVER use EWOQ keys** — always generate fresh keys
+- **NEVER pkill luxd** — use `lux cli` for proper shutdown
+- Real code examples with actual APIs and endpoints
+- Security-first: all sensitive ops have warnings
 
-These skills work on any Bootnode-powered platform:
+## Related
 
-| Platform | Domain | Install |
-|----------|--------|---------|
-| Bootnode | bootno.de | `npx skills add bootnode/skills` |
-| Hanzo Web3 | web3.hanzo.ai | `npx skills add hanzoai/skills` |
-| Lux Cloud | cloud.lux.network | `npx skills add luxfi/skills` |
-| Zoo Labs | web3.zoo.ngo | `npx skills add zooai/skills` |
-| Pars Cloud | cloud.pars.network | `npx skills add parsnetwork/skills` |
+- [Hanzo Skills](https://github.com/hanzoai/skills) — AI infrastructure skills
+- [Lux Documentation](https://docs.lux.network) — Official docs
+- [Lux Network](https://lux.network) — Main website
 
-## Compatible with
+---
 
-- [Hanzo Bot](https://hanzo.bot) (`npx @hanzo/bot`)
-- Claude Code
-- Codex
-- Cursor
-- Openclaw
-- Any agent supporting the [Agent Skills spec](https://agentskills.io/specification)
-
-## Architecture
-
-See [HIP-009: Unified Agent Skills Architecture](https://github.com/hanzoai/hips/blob/main/HIP-009-agent-skills.md) for the full design rationale.
-
-`~/.hanzo/skills/` is the canonical source of truth. All agents see the same skills via symlinks.
-
-## Powered by
-
-[Hanzo AI](https://hanzo.ai) - Enterprise AI infrastructure
-
-## Specification
-
-Follows the [Agent Skills spec](https://agentskills.io/specification).
-
-## License
-
-MIT
+**Maintained by**: Lux Network / Hanzo AI
+**License**: MIT
