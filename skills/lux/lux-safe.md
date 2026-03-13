@@ -13,11 +13,11 @@ Lux Safe provides **multisig smart account contracts** — fork of Safe (Gnosis 
 |------|-------|
 | Repo | `github.com/luxfi/safe` |
 | Package | `@luxfi/safe` |
-| Version | v1.5.0 |
-| Language | Solidity 0.7.6 |
+| Version | v0.0.7 |
+| Language | Solidity >=0.7.0 <0.9.0 |
 | Framework | Hardhat |
 | Upstream | safe-global/safe-smart-account |
-| License | LGPL-3.0 |
+| License | BSD-3-Clause |
 
 ## Features
 
