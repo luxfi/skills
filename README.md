@@ -14,7 +14,7 @@ skills/
 │   ├── INDEX.md            # Full skill catalog
 │   ├── lux-node.md         # Core validator node
 │   ├── lux-evm.md          # EVM execution engine
-│   ├── lux-consensus.md    # Snow consensus family
+│   ├── lux-consensus.md    # Quasar post-quantum consensus
 │   └── ...
 ├── discover-lux/           # Auto-discovery gateway skill
 │   └── SKILL.md
