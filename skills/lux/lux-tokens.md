@@ -1,0 +1,108 @@
+# Lux Tokens - Bridge, Exchange & Wallet Token Registry
+
+**Category**: Lux Ecosystem
+**Related Skills**: `lux/lux-bridge.md`, `lux/lux-exchange.md`, `lux/lux-wallet.md`
+
+## Overview
+
+Lux Tokens is the **canonical token registry** for the Lux ecosystem. It contains bridge mappings between Ethereum and Lux tokens, token logos, and condensed token lists (top 100/150). Used by Lux Bridge, Lux Exchange, and Lux Wallet.
+
+## Quick reference
+
+| Item | Value |
+|------|-------|
+| Repo | `github.com/luxfi/tokens` |
+| Branch | `main` |
+| Language | Python (scripts only) |
+| Hosting | Vercel (redirects root to lux.network) |
+| Logo format | `<token-address>/logo.png` |
+
+## Structure
+
+```
+tokens/
+├── lux-tokens/           # Token logos by Lux address
+│   └── <address>/logo.png
+├── ethereum-tokens/       # Bridged token logos by Ethereum address
+│   └── <address>/logo.png
+├── ethereum.config        # All bridgeable tokens on Ethereum (full list)
+├── ethereum100.config     # Top 100 bridgeable Ethereum tokens
+├── ethereum150.config     # Top 150 bridgeable Ethereum tokens
+├── lux.config             # All bridged tokens on Lux (full list)
+├── lux100.config           # Top 100 Lux tokens
+├── lux150.config           # Top 150 Lux tokens
+├── data/
+│   ├── eth_token_mapping.csv        # Ethereum token mapping data
+│   ├── current_mapping_libre.csv    # Current libre mapping
+│   ├── penultimate.csv              # Previous mapping snapshot
+│   └── penultimate.json             # Previous mapping (JSON)
+├── scripts/
+│   ├── generateAssets.py    # Generate token asset files
+│   ├── smallConfig.py       # Generate condensed 100/150 lists
+│   └── swapLogos.py         # Swap logo files between chains
+├── vercel.json              # Redirect root to lux.network
+└── README.md
+```
+
+## Config File Format
+
+Each config file (ethereum.config, lux.config) is a JSON array of token entries:
+
+| Field | Description |
+|-------|-------------|
+| `Address` | Token contract address on the respective chain |
+| `Name` | Token name |
+| `Symbol` | Token ticker symbol |
+| `ImageURI` | Location of the token logo |
+| `ResourceId` | Mapping ID to link Ethereum token to its Lux counterpart |
+
+The `ResourceId` field is the bridge mapping key -- it links an Ethereum token to its corresponding Lux token and vice versa.
+
+## Token Logos
+
+Logos stored at `<chain>-tokens/<address>/logo.png`:
+- `lux-tokens/` -- Logos by Lux C-Chain address (checksummed)
+- `ethereum-tokens/` -- Logos by Ethereum address (for bridged tokens)
+
+These logos are displayed on Lux DeFi apps (DEX, analytics, wallet).
+
+## Adding a Token Logo
+
+1. Create directory: `lux-tokens/<checksummed-address>/`
+2. Add `logo.png` (square, transparent background recommended)
+3. Open PR to `main` branch
+
+Adding a logo here does NOT make a token bridgeable. Bridge support requires separate configuration.
+
+## Scripts
+
+```bash
+# Generate asset files from mapping data
+python scripts/generateAssets.py
+
+# Generate condensed top-100/150 lists from full configs
+python scripts/smallConfig.py
+
+# Swap logos between chain directories
+python scripts/swapLogos.py
+```
+
+## Consumers
+
+| Service | Domain | Usage |
+|---------|--------|-------|
+| Lux Bridge | bridge.lux.network | Bridge mapping configs + logos |
+| Lux Exchange | lux.exchange | Token logos + lists |
+| Lux Wallet | wallet.lux.network | Token logos + metadata |
+
+## Related Skills
+
+- `lux/lux-bridge.md` -- Cross-chain bridge (uses ResourceId mappings)
+- `lux/lux-exchange.md` -- DEX frontend (displays token logos)
+- `lux/lux-wallet.md` -- Wallet (token list + logos)
+
+---
+
+**Last Updated**: 2026-03-13
+**Category**: Lux Ecosystem
+**Related**: tokens, bridge, logos, registry, asset-list

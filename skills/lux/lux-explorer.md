@@ -1,7 +1,7 @@
 # Lux Explorer - Block Explorer
 
 **Category**: Lux Ecosystem
-**Related Skills**: `lux/lux-node.md`, `lux/lux-indexer.md`
+**Related Skills**: `lux/lux-explore.md`, `lux/lux-node.md`, `lux/lux-indexer.md`
 
 ## Overview
 
