@@ -4,7 +4,7 @@
 
 ## Overview
 
-Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 chain types (P/X/C/Q/M), sub-second 2-round finality, native DEX precompiles, and full FHE support. 74 skills cover every component.
+Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 14 chain types (P/X/C/Q/A/B/T/Z/G/D/K/O/R/I), sub-second 2-round finality, native DEX precompiles, and full FHE support. 75 skills cover every component.
 
 ### Key Rules
 
@@ -15,7 +15,7 @@ Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 ch
 
 ## Skill Catalog
 
-### Core Blockchain (10 skills)
+### Core Blockchain (11 skills)
 
 **Lux Node** (`lux-node.md`)
 Core validator node (`luxd`). Go 1.26.1. 5 chains: P/X/C/Q/M. Ports 9630/9631.
@@ -43,6 +43,9 @@ Post-quantum secure messaging VM. ML-KEM-768 + ML-DSA-65. `github.com/luxfi/sess
 
 **Lux P2P** (`lux-p2p.md`)
 Peer-to-peer networking: libp2p, mDNS, PubSub messaging.
+
+**Lux Chains** (`lux-chains.md`)
+All 14 chain types: P/X/C (core) + Q/A/B/T/Z/G/D/K/O/R/I (optional). VM IDs, consensus engines, build tags.
 
 **Lux Genesis** (`lux-genesis.md`)
 Genesis configuration and network bootstrapping. `github.com/luxfi/genesis`.
@@ -274,6 +277,7 @@ Academic whitepapers: Quasar consensus proofs, PQ crypto protocols.
 ```
 What do you need?
 ├── Run a node → lux-node.md
+├── Chain types (all 14) → lux-chains.md
 ├── Smart contracts → lux-evm.md + lux-precompile.md
 ├── Confidential contracts → lux-fhevm.md + lux-fhe.md
 ├── Understand consensus → lux-consensus.md (Quasar, NOT Snow)
@@ -330,5 +334,5 @@ What do you need?
 ---
 
 **Last Updated**: 2026-03-13
-**Total Skills**: 74
+**Total Skills**: 75
 **Gateway**: `discover-lux/SKILL.md`
