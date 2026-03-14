@@ -4,7 +4,7 @@
 
 ## Overview
 
-Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 chain types (P/X/C/Q/M), sub-second 2-round finality, native DEX precompiles, and full FHE support. 60 skills cover every component.
+Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 chain types (P/X/C/Q/M), sub-second 2-round finality, native DEX precompiles, and full FHE support. 74 skills cover every component.
 
 ### Key Rules
 
@@ -15,13 +15,16 @@ Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 ch
 
 ## Skill Catalog
 
-### Core Blockchain (7 skills)
+### Core Blockchain (10 skills)
 
 **Lux Node** (`lux-node.md`)
 Core validator node (`luxd`). Go 1.26.1. 5 chains: P/X/C/Q/M. Ports 9630/9631.
 
 **Lux EVM** (`lux-evm.md`)
 Unified Go EVM engine. `github.com/luxfi/evm` v0.8.35+. Coreth merged in. DEX precompiles at 0x0400-0x0403.
+
+**Lux Coreth** (`lux-coreth.md`)
+Legacy C-Chain EVM (merged into lux-evm). `github.com/luxfi/coreth`.
 
 **Lux Quasar** (`lux-consensus.md`)
 Post-quantum consensus engine with Photonic Selection. 2-round finality. Dual BLS+lattice certificates.
@@ -32,13 +35,19 @@ CLOB order matching engine. 434M+ orders/sec (GPU). Go + C++ + Rust + MLX. FIX p
 **Lux VM** (`lux-vm.md`)
 VM types and interfaces. Dual-transport RPC (ZAP/gRPC). Plugin system. `github.com/luxfi/vm`.
 
+**Lux SpacesVM** (`lux-spacesvm.md`)
+Key-value subnet VM for arbitrary state storage.
+
 **Lux Session** (`lux-session.md`)
 Post-quantum secure messaging VM. ML-KEM-768 + ML-DSA-65. `github.com/luxfi/session`.
 
 **Lux P2P** (`lux-p2p.md`)
 Peer-to-peer networking: libp2p, mDNS, PubSub messaging.
 
-### Cryptography & Security (7 skills)
+**Lux Genesis** (`lux-genesis.md`)
+Genesis configuration and network bootstrapping. `github.com/luxfi/genesis`.
+
+### Cryptography & Security (11 skills)
 
 **Lux Crypto** (`lux-crypto.md`)
 BLS12-381, SLIP-10 HD, secp256k1, KZG, gnark-crypto, ZK (Ziren).
@@ -61,6 +70,18 @@ Custom EVM precompiles, SessionVM, ERC20 Go implementation.
 **Lux MPC** (`lux-mpc.md`)
 Distributed threshold signing service (`mpcd`). CGGMP21 (ECDSA) + FROST (EdDSA). 20+ chains.
 
+**Lux Ringtail** (`lux-ringtail.md`)
+Post-quantum signature scheme for Lux consensus.
+
+**Lux FHE Coprocessor** (`lux-fhe-coprocessor.md`)
+FHE compute engine for processing encrypted operations on-chain.
+
+**Lux HSM** (`lux-hsm.md`)
+Hardware Security Module integration for key management.
+
+**Lux KMS** (`lux-kms.md`)
+Key Management Service for Lux infrastructure.
+
 ### Threshold Signatures (2 skills)
 
 **Lux Threshold** (`lux-threshold.md`)
@@ -69,7 +90,7 @@ Universal multi-chain threshold signature library. Go. Post-quantum. 20+ blockch
 **Lux Teleport** (`lux-teleport.md`)
 ZK MPC cross-chain bridge. Threshold signatures for asset transfers. Zero-knowledge privacy.
 
-### SDK & Tools (5 skills)
+### SDK & Tools (7 skills)
 
 **Lux SDK** (`lux-sdk.md`)
 Official Go SDK. `github.com/luxfi/sdk`. All 5 chain types. Auto-selects CLI/netrunner/API backend.
@@ -85,6 +106,12 @@ Developer portal and documentation hub. Next.js 16 + Fumadocs. build.lux.network
 
 **Lux Plugins** (`lux-plugins.md`)
 VM & subnet plugin registry for Lux Plugin Manager (LPM). YAML definitions.
+
+**Lux LPM** (`lux-lpm.md`)
+Lux Plugin Manager. CLI for installing and managing VM plugins.
+
+**Lux Ledger** (`lux-ledger.md`)
+Ledger hardware wallet integration for Lux transactions.
 
 ### Wallets (5 skills)
 
@@ -103,10 +130,13 @@ Electron desktop wallet. Rabby Desktop fork. Built-in dapp browser. IPFS support
 **Lux Finance** (`lux-finance.md`)
 DeFi web interface (Svelte 4 + Vite). Swaps, liquidity, staking, bridging via Connext. lux.finance.
 
-### DeFi & Markets (6 skills)
+### DeFi & Markets (7 skills)
 
 **Lux Exchange** (`lux-exchange.md`)
 DEX frontend + omnichain routing. Uniswap-based with native precompiles + CLOB integration.
+
+**Lux Exchange API** (`lux-exchange-api.md`)
+DEX API backend for programmatic trading.
 
 **Lux Market** (`lux-market.md`)
 NFT marketplace.
@@ -134,7 +164,7 @@ MPC-based cross-chain bridge. TypeScript + Go. 2-of-3 threshold MPC nodes.
 **Lux Tokens** (`lux-tokens.md`)
 Canonical token registry. Bridge mappings ETH↔Lux. Token logos. Top 100/150 lists.
 
-### GPU & Acceleration (2 skills)
+### GPU & Acceleration (3 skills)
 
 **Lux GPU** (`lux-gpu.md`)
 Go bindings for GPU ops. Metal/CUDA/Dawn/ONNX/CPU backends. Tensor ops, crypto, FHE, ML inference.
@@ -142,7 +172,10 @@ Go bindings for GPU ops. Metal/CUDA/Dawn/ONNX/CPU backends. Tensor ops, crypto, 
 **Lux Accel** (`lux-accel.md`)
 GPU, FPGA, Rust crypto acceleration. `github.com/luxfi/accel`.
 
-### Infrastructure & Ops (7 skills)
+**Lux C++** (`lux-cpp.md`)
+C++ library suite: lux-gpu, lux-crypto, lux-lattice, lux-fhe, lux-dex. CMake + Conan. Metal/CUDA/WebGPU.
+
+### Infrastructure & Ops (9 skills)
 
 **Lux Universe** (`lux-universe.md`)
 Production K8s infrastructure (private repo).
@@ -162,8 +195,14 @@ Grafana + Prometheus + Loki + Promtail + Alertmanager. 7 dashboards. monitor.lux
 **Lux Database** (`lux-database.md`)
 Storage layer: ZapDB, caching, compression.
 
+**Lux ZapDB** (`lux-zapdb.md`)
+ZapDB storage engine for Lux node persistence.
+
 **Lux Migrate** (`lux-migrate.md`)
 Blockchain data migration framework. SubnetEVM (PebbleDB), C-Chain (BadgerDB). JSONL format.
+
+**Lux Staking** (`lux-staking.md`)
+Staking infrastructure for validators and delegators.
 
 ### AI & Compute (2 skills)
 
@@ -212,6 +251,11 @@ Bitcoin integration marketing site. Next.js 15. MDX content. ESG/green-BTC messa
 **Lux FX** (`lux-fx.md`)
 Cryptocurrency pricing API gateway. Single-file Go. CoinGecko proxy + cache. fx.lux.network.
 
+### Smart Contracts (1 skill)
+
+**Lux Standard** (`lux-standard.md`)
+@luxfi/contracts. ERC20/721/1155, FHE contracts, governance, DeFi primitives. Foundry + Hardhat.
+
 ### Configuration & Upgrades (1 skill)
 
 **Lux Upgrade** (`lux-upgrade.md`)
@@ -257,11 +301,23 @@ What do you need?
 ├── Deploy K8s → lux-operator.md + lux-deploy.md + lux-universe.md
 ├── Monitor → lux-monitoring.md
 ├── Data migration → lux-migrate.md
+├── Smart contracts → lux-standard.md
+├── Staking → lux-staking.md
+├── Key management → lux-kms.md + lux-hsm.md
+├── Hardware wallet → lux-ledger.md
+├── Plugin management → lux-lpm.md + lux-plugins.md
+├── FHE coprocessor → lux-fhe-coprocessor.md
+├── PQ signatures → lux-ringtail.md
+├── C++ libs → lux-cpp.md
+├── Legacy C-Chain → lux-coreth.md
+├── Genesis config → lux-genesis.md
+├── ZapDB → lux-zapdb.md
+├── SpacesVM → lux-spacesvm.md
+├── Exchange API → lux-exchange-api.md
 ├── AI compute → lux-ai.md
 ├── Ad exchange → lux-adx.md
 ├── Brand/design → lux-brand.md
 ├── Developer docs → lux-build.md + lux-docs.md
-├── VM plugins → lux-plugins.md
 ├── Fork scheduling → lux-upgrade.md
 └── Pricing API → lux-fx.md
 ```
@@ -274,5 +330,5 @@ What do you need?
 ---
 
 **Last Updated**: 2026-03-13
-**Total Skills**: 60
+**Total Skills**: 74
 **Gateway**: `discover-lux/SKILL.md`
