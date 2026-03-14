@@ -4,7 +4,7 @@
 
 ## Overview
 
-Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 chain types (P/X/C/Q/M), sub-second 2-round finality, and native DEX precompiles. 31 skills cover every component.
+Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 5 chain types (P/X/C/Q/M), sub-second 2-round finality, and native DEX precompiles. 35 skills cover every component.
 
 ### Key Rules
 
@@ -127,11 +127,15 @@ Storage layer: ZapDB, caching, compression.
 GPU, FPGA, Rust crypto acceleration. `github.com/luxfi/accel`.
 `cat skills/lux/lux-accel.md`
 
-### Data & Content (4 skills)
+### Data & Content (5 skills)
 
 **Lux Explorer** (`lux-explorer.md`)
-Blockscout fork. Elixir. Block explorer.
+Blockscout fork. Elixir. Block explorer backend.
 `cat skills/lux/lux-explorer.md`
+
+**Lux Explore** (`lux-explore.md`)
+Blockscout frontend fork. Next.js 16. `@luxfi/explore`. explore.lux.network.
+`cat skills/lux/lux-explore.md`
 
 **Lux Indexer** (`lux-indexer.md`)
 Blockchain data indexing, Uniswap subgraphs.
@@ -144,6 +148,22 @@ React components, charts, status dashboard.
 **Lux Docs** (`lux-docs.md`)
 docs.lux.network. Next.js 16 + `@hanzo/docs`. pnpm.
 `cat skills/lux/lux-docs.md`
+
+### Identity & Brand (2 skills)
+
+**Lux Login** (`lux-login.md`)
+Custom auth portal for lux.id. Next.js 15, OAuth2 + password login. `@luxfi/login`.
+`cat skills/lux/lux-login.md`
+
+**Lux Brand** (`lux-brand.md`)
+Official brand assets and design system. `@luxfi/brand` npm package. Colors, typography, tokens, logos, themes.
+`cat skills/lux/lux-brand.md`
+
+### Node Configuration (1 skill)
+
+**Lux Upgrade** (`lux-upgrade.md`)
+Network upgrade scheduling. Go package. Fork activation times for mainnet/testnet. `github.com/luxfi/upgrade`.
+`cat skills/lux/lux-upgrade.md`
 
 ### Research (2 skills)
 
@@ -169,7 +189,11 @@ What do you need?
 ├── Cross-chain → lux-bridge.md
 ├── Cryptography → lux-crypto.md + lux-fhe.md + lux-lattice.md
 ├── Wallet ops → lux-wallet.md + lux-safe.md
-└── Deploy prod → lux-universe.md + lux-deploy.md
+├── Deploy prod → lux-universe.md + lux-deploy.md
+├── Brand/design → lux-brand.md
+├── Auth portal → lux-login.md
+├── Explorer frontend → lux-explore.md
+└── Fork scheduling → lux-upgrade.md
 ```
 
 ## Related Ecosystems
@@ -180,5 +204,5 @@ What do you need?
 ---
 
 **Last Updated**: 2026-03-13
-**Total Skills**: 31
+**Total Skills**: 35
 **Gateway**: `discover-lux/SKILL.md`

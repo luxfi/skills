@@ -1,0 +1,113 @@
+# Lux ID - Web3 Identity Frontend
+
+**Category**: Lux Ecosystem
+**Related Skills**: `lux/lux-wallet.md`, `lux/lux-ui.md`
+
+## Overview
+
+Lux ID (`lux.id`) is the **Web3 identity portal** for the Lux ecosystem -- authentication, account management, and identity pages. It is a static Next.js site built on `@luxfi/ui` and `@hanzo/auth`, deployed as a static export.
+
+## Quick reference
+
+| Item | Value |
+|------|-------|
+| Package | `@luxfi/id` v0.0.6 |
+| Framework | Next.js 15.1.6 |
+| Domain | `https://lux.id` |
+| Package Manager | pnpm 10.12.4 |
+| Output | Static export (`next export`) |
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 15.1.6 (App Router) |
+| UI | `@luxfi/ui` 5.5.2, `@hanzo/ui` 5.3.22, Radix UI, Tailwind CSS |
+| Auth | `@hanzo/auth` 2.5.5 |
+| Commerce | `@hanzo/commerce` 7.3.8 |
+| 3D | `@splinetool/react-spline` 4.0.0 |
+| Icons | Lucide React 0.470.0 |
+| Theming | `next-themes` (dark mode) |
+| State | MobX (`mobx-react`, `mobx-react-lite`) |
+
+## Architecture
+
+```
+luxfi/id
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx      # Root layout
+│   │   └── page.tsx         # Landing page
+│   ├── site-def.ts          # Site definition (nav, footer from @luxfi/ui)
+│   ├── metadata.ts          # SEO metadata for lux.id
+│   └── mdx-components.tsx   # MDX component overrides
+├── public/                  # Static assets (favicons, images)
+├── next.config.js           # Next.js config (static export, transpilePackages)
+├── tailwind.config.ts       # Tailwind configuration
+├── postcss.config.js        # PostCSS with imports
+└── package.json             # @luxfi/id
+```
+
+## One-file quickstart
+
+```bash
+git clone https://github.com/luxfi/id.git
+cd id
+pnpm install
+pnpm dev
+```
+
+## Key Configuration
+
+### next.config.js
+
+- `output: 'export'` -- static site generation, no server
+- `transpilePackages`: `@hanzo/ui`, `@hanzo/auth`, `@hanzo/commerce`, `@luxfi/ui`, `@luxfi/data`, `@luxfi/menu-icons`
+- TypeScript and ESLint errors ignored during build (WIP)
+
+### Site Definition
+
+```typescript
+import { footer, mainNav, type SiteDef } from '@luxfi/ui/site-def'
+
+export default {
+  currentAs: 'https://lux.id',
+  nav: { common: mainNav },
+  footer: footer.standard
+} satisfies SiteDef
+```
+
+## Key Dependencies
+
+```
+@luxfi/ui@5.5.2              — Lux design system components
+@hanzo/ui@5.3.22             — Hanzo shared UI primitives
+@hanzo/auth@2.5.5            — Authentication components
+@hanzo/commerce@7.3.8        — Commerce/payment integration
+@splinetool/react-spline@4.0.0 — 3D scene rendering
+lucide-react@0.470.0         — Icon set
+next-themes                  — Dark mode
+mobx-react / mobx-react-lite — State management
+```
+
+## Features
+
+- Web3 identity and authentication pages
+- Static site (no server-side rendering)
+- Shared Lux ecosystem navigation and footer
+- Dark mode support via `next-themes`
+- 3D elements via Spline
+- Content from static JSON in `/src/content`
+
+## Related Skills
+
+- `lux/lux-wallet.md` -- Wallet integration
+- `lux/lux-ui.md` -- Shared UI components
+- `lux/lux-bridge.md` -- Bridge uses identity
+
+---
+
+**Last Updated**: 2026-03-13
+**Category**: Lux Ecosystem
+**Related**: identity, auth, web3, frontend, next.js
+**Prerequisites**: Node.js 18+, pnpm

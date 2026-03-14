@@ -1,0 +1,104 @@
+# Lux Plugins Core - VM & Subnet Plugin Registry
+
+**Category**: Lux Ecosystem
+**Related Skills**: `lux/lux-node.md`, `lux/lux-evm.md`, `lux/lux-spacesvm.md`
+
+## Overview
+
+Lux Plugins Core is the **official plugin repository** for the Lux Plugin Manager (LPM). It contains YAML definitions for virtual machines and subnets that LPM uses to download, install, and manage VM binaries on Lux nodes.
+
+## Quick reference
+
+| Item | Value |
+|------|-------|
+| Repo | `github.com/luxfi/plugins-core` |
+| Branch | `master` |
+| Format | YAML definition files |
+| Tool | Lux Plugin Manager (LPM) |
+| Maintainer | `z@lux.network` |
+
+## Repository Structure
+
+```
+plugins-core/
+├── vms/              — VM definitions
+│   ├── blobvm.yaml       — Content-addressable KV store VM
+│   ├── spacesvm.yaml     — Hierarchical storage VM
+│   └── subnet-evm.yaml   — Subnet EVM (Solidity smart contracts)
+├── subnets/          — Subnet definitions
+│   ├── spaces.yaml       — Spaces Subnet Demo
+│   └── zoo.yaml          — Zoo subnet
+└── examples/         — Template files
+    ├── vm.yaml           — VM definition template
+    └── subnet.yaml       — Subnet definition template
+```
+
+## Registered VMs
+
+| VM | Alias | ID | Version |
+|----|-------|----|---------|
+| BlobVM | `blobvm` | `kM6h4LYe3AcEU1MB2UNg6ubzAiDAALZzpVrbX8zn3hXF6Avd8` | 0.0.6 |
+| SpacesVM | `spacesvm` | `sqja3uK17MJxfC7AN8nGadBw9JK5BcrsNwNynsqP5Gih8M5Bm` | 0.0.3 |
+| Subnet EVM | `subnet-evm` | `srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy` | 0.2.7 |
+
+## VM Definition Format
+
+```yaml
+vm:
+  id: "<base58 encoded VM ID>"
+  alias: "<unique alias>"
+  homepage: "<project URL>"
+  description: "<description>"
+  maintainers:
+    - "<email>"
+  installScript: "<path to build script>"
+  binaryPath: "<path to built binary>"
+  url: "<release tarball URL>"
+  sha256: "<checksum>"
+  version:
+    major: 0
+    minor: 0
+    patch: 1
+```
+
+## Subnet Definition Format
+
+Subnet definitions reference VMs by alias and include network-specific configuration (subnet ID, blockchain IDs, genesis).
+
+## Usage with LPM
+
+```bash
+# Install a VM via LPM using this repository
+lpm install --vm spacesvm
+
+# List available VMs
+lpm list-vms
+
+# Install from a specific plugin repository
+lpm add-repository --alias luxfi --url https://github.com/luxfi/plugins-core.git
+```
+
+## Adding a New VM
+
+1. Create a YAML file in `vms/` following the example template
+2. Include: VM ID, alias, install script, binary path, release URL, and sha256 checksum
+3. Submit a pull request
+
+## Adding a New Subnet
+
+1. Create a YAML file in `subnets/` following the example template
+2. Reference the VM alias, subnet ID, and blockchain configuration
+3. Submit a pull request
+
+## Related Skills
+
+- `lux/lux-node.md` — Core node that runs VM plugins
+- `lux/lux-evm.md` — Subnet EVM execution engine
+- `lux/lux-spacesvm.md` — SpacesVM storage chain
+
+---
+
+**Last Updated**: 2026-03-13
+**Category**: Lux Ecosystem
+**Related**: plugins, lpm, vm-registry, subnets
+**Prerequisites**: Lux node, LPM CLI
