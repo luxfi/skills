@@ -4,7 +4,7 @@
 
 ## Overview
 
-Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 14 chain types (P/X/C/Q/A/B/T/Z/G/D/K/O/R/I), sub-second 2-round finality, native DEX precompiles, and full FHE support. 75 skills cover every component.
+Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 14 chain types (P/X/C/Q/A/B/T/Z/G/D/K/O/R/I), sub-second 2-round finality, native DEX precompiles, and full FHE support. 79 skills cover every component.
 
 ### Key Rules
 
@@ -132,6 +132,20 @@ Electron desktop wallet. Rabby Desktop fork. Built-in dapp browser. IPFS support
 
 **Lux Finance** (`lux-finance.md`)
 DeFi web interface (Svelte 4 + Vite). Swaps, liquidity, staking, bridging via Connext. lux.finance.
+
+### Regulated Products (4 skills)
+
+**Lux Regulated** (`lux-regulated.md`)
+Building ATS, BD, and TA from OSS modules. 3 product types, building blocks table (broker/cex/compliance/mpc/dex/bank), assembly patterns with code examples, env var reference.
+
+**Lux Broker** (`lux-broker.md`)
+Multi-provider trading router (`brokerd`). `github.com/luxfi/broker`. 16 built-in providers, `provider.Provider` interface, optional capability interfaces, envconfig, SOR with fee-aware routing, instant-buy settlement, account resolver, frontend exchange API.
+
+**Lux CEX** (`lux-cex.md`)
+Centralized exchange engine (`cexd`). `github.com/luxfi/cex`. CLOB matching engine, multi-protocol gateway (REST/FIX/WS/ZAP), pre/post-trade compliance hooks, market surveillance, FINRA trade reporting, `markets.RegisterFromProviders`, `types.MapAssetClass`.
+
+**Lux Compliance** (`lux-compliance.md`)
+KYC/AML/regulatory framework. `github.com/luxfi/compliance`. IDV (Jumio, Onfido, Plaid), KYC orchestration, AML screening (OFAC/EU/UK/PEP) + monitoring (DefaultMonitoringRules), Jube integration, entity types (ATS/BD/TA/MSB), regulatory jurisdictions (USA/UK/IOM), payment compliance (travel rule, CTR).
 
 ### DeFi & Markets (7 skills)
 
@@ -283,6 +297,10 @@ What do you need?
 ├── Understand consensus → lux-consensus.md (Quasar, NOT Snow)
 ├── Build Go client → lux-sdk.md
 ├── Test locally → lux-cli.md + lux-netrunner.md
+├── Build ATS/BD/TA → lux-regulated.md (assembly) + lux-broker.md + lux-cex.md + lux-compliance.md
+├── Broker/SOR → lux-broker.md (16 providers, smart routing)
+├── CEX engine → lux-cex.md (CLOB, surveillance, FINRA reporting)
+├── KYC/AML → lux-compliance.md (IDV, screening, Jube, travel rule)
 ├── High-perf DEX → lux-dex.md (CLOB) + lux-exchange.md (AMM)
 ├── DeFi lending → lux-liquid.md
 ├── DeFi frontend → lux-finance.md
@@ -333,6 +351,6 @@ What do you need?
 
 ---
 
-**Last Updated**: 2026-03-13
-**Total Skills**: 75
+**Last Updated**: 2026-03-22
+**Total Skills**: 79
 **Gateway**: `discover-lux/SKILL.md`

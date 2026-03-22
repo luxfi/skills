@@ -23,6 +23,10 @@ description: Auto-discover Lux blockchain skills based on context
 | Multisig | lux-safe | `cat skills/lux/lux-safe.md` |
 | Cross-chain bridge | lux-bridge | `cat skills/lux/lux-bridge.md` |
 | DEX / AMM | lux-exchange | `cat skills/lux/lux-exchange.md` |
+| Build ATS/BD/TA | lux-regulated | `cat skills/lux/lux-regulated.md` |
+| Broker / SOR | lux-broker | `cat skills/lux/lux-broker.md` |
+| CEX engine | lux-cex | `cat skills/lux/lux-cex.md` |
+| KYC / AML | lux-compliance | `cat skills/lux/lux-compliance.md` |
 | NFT marketplace | lux-market | `cat skills/lux/lux-market.md` |
 | Block explorer | lux-explorer | `cat skills/lux/lux-explorer.md` |
 | Monitoring | lux-monitoring | `cat skills/lux/lux-monitoring.md` |
@@ -56,6 +60,9 @@ cat skills/lux/INDEX.md
 | ``github.com/luxfi/bridge`` | lux-bridge |
 | ``github.com/luxfi/universe`` | lux-universe, lux-deploy |
 | ``github.com/luxfi/wallet`` | lux-wallet, lux-safe |
+| ``github.com/luxfi/broker`` | lux-broker, lux-regulated |
+| ``github.com/luxfi/cex`` | lux-cex, lux-regulated |
+| ``github.com/luxfi/compliance`` | lux-compliance, lux-regulated |
 
 ## Related Ecosystems
 
@@ -64,6 +71,6 @@ cat skills/lux/INDEX.md
 
 ---
 
-**Last Updated**: 2026-03-13
-**Skills Count**: 30
+**Last Updated**: 2026-03-22
+**Skills Count**: 34
 **Format Version**: 1.0 (Gateway)
