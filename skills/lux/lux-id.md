@@ -163,11 +163,14 @@ pnpm cn
 pnpm clean
 ```
 
-## Relationship to Lux Login
+## Identity and Auth
 
-`lux.id` (this repo) is the **identity portal** -- a static marketing/profile site for Web3 identity.
+`lux.id` is a DNS alias for `hanzo.id` -- Hanzo IAM is the single identity provider for all Lux ecosystem services. Users authenticate at `hanzo.id` (or equivalently `lux.id`) via OIDC, and all Lux services validate tokens against the same IAM.
 
-`luxfi/login` is the **authentication portal** -- the actual login/signup/forgot-password flow that authenticates users against Hanzo IAM (Casdoor). The login portal proxies to `iam.hanzo.ai` for authentication and redirects to `cloud.lux.network` after success.
+### This Repo vs Lux Login
+
+- `lux.id` (this repo) is the **identity portal** -- a static marketing/profile site for Web3 identity.
+- `luxfi/login` is the **authentication portal** -- the actual login/signup/forgot-password flow that authenticates users against Hanzo IAM. The login portal proxies to `hanzo.id` for authentication and redirects to `cloud.lux.network` after success.
 
 Both share the `lux.id` domain conceptually but serve different purposes. The login portal runs as a standalone Next.js server (Docker, port 3000), while this identity portal is statically exported.
 

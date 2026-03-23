@@ -192,7 +192,10 @@ GPU, FPGA, Rust crypto acceleration. `github.com/luxfi/accel`.
 **Lux C++** (`lux-cpp.md`)
 C++ library suite: lux-gpu, lux-crypto, lux-lattice, lux-fhe, lux-dex. CMake + Conan. Metal/CUDA/WebGPU.
 
-### Infrastructure & Ops (9 skills)
+### Infrastructure & Ops (10 skills)
+
+**Lux Bootnode** (`lux-bootnode.md`)
+Bootstrap node infrastructure and multi-chain RPC API (bootno.de). K8s manifests in universe. Powers bootno.de, cloud.lux.network, web3.hanzo.ai.
 
 **Lux Universe** (`lux-universe.md`)
 Production K8s infrastructure (private repo).
@@ -320,6 +323,7 @@ What do you need?
 ├── Data indexing → lux-graph.md + lux-indexer.md
 ├── Explorer → lux-explore.md (frontend) + lux-explorer.md (backend)
 ├── Token registry → lux-tokens.md
+├── Bootstrap nodes → lux-bootnode.md
 ├── Deploy K8s → lux-operator.md + lux-deploy.md + lux-universe.md
 ├── Monitor → lux-monitoring.md
 ├── Data migration → lux-migrate.md
@@ -351,6 +355,6 @@ What do you need?
 
 ---
 
-**Last Updated**: 2026-03-22
-**Total Skills**: 79
+**Last Updated**: 2026-03-23
+**Total Skills**: 80
 **Gateway**: `discover-lux/SKILL.md`

@@ -249,6 +249,18 @@ LUX_MNEMONIC="word1 word2 ..." ./deploy-subnets \
 6. **Network separation**: Mainnet and testnet use different ports, never conflict
 7. **CLI-based**: Uses `lux` CLI for network management, never `pkill luxd`
 
+## Production K8s Deployment
+
+For production, validators are deployed to the `lux-k8s` DOKS cluster using Kustomize manifests in the universe repo:
+
+- K8s manifests: `~/work/lux/universe/k8s/` (lux-mainnet, lux-testnet, lux-devnet, bootnode, etc.)
+- Hanzo infra overlay: `~/work/hanzo/universe/infra/k8s/`
+- Deploy: `kubectl kustomize . | kubectl apply -f -` (idempotent)
+- Secrets: `kms.hanzo.ai` via `KMSSecret` CRDs -- never in manifests
+- Images: `ghcr.io/luxfi/node:<tag>`, always `--platform linux/amd64`
+
+The Lux Operator (`github.com/luxfi/operator`) manages validator lifecycle via CRDs. See `lux-operator.md`.
+
 ## Related Repos
 
 | Repo | Purpose |
@@ -258,6 +270,8 @@ LUX_MNEMONIC="word1 word2 ..." ./deploy-subnets \
 | `github.com/luxfi/cli` | CLI tool for network management |
 | `github.com/luxfi/genesis` | Genesis configuration files |
 | `github.com/luxfi/sdk` | SDK for P-chain wallet transactions |
+| `github.com/luxfi/universe` | Production K8s infrastructure (private) |
+| `github.com/luxfi/operator` | K8s operator for automated validator lifecycle |
 
 ---
 

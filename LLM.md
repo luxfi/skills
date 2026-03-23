@@ -44,6 +44,7 @@ skills/
 
 ### Infrastructure
 - lux-universe.md — Production K8s (lux-k8s cluster)
+- lux-bootnode.md — Bootstrap nodes and multi-chain RPC API (bootno.de)
 - lux-stack.md — Local dev environment
 - lux-deploy.md — Deployment automation
 - lux-monitoring.md — Prometheus + Grafana

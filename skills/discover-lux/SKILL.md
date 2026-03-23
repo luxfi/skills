@@ -31,6 +31,7 @@ description: Auto-discover Lux blockchain skills based on context
 | Block explorer | lux-explorer | `cat skills/lux/lux-explorer.md` |
 | Monitoring | lux-monitoring | `cat skills/lux/lux-monitoring.md` |
 | Production K8s | lux-universe | `cat skills/lux/lux-universe.md` |
+| Bootstrap nodes | lux-bootnode | `cat skills/lux/lux-bootnode.md` |
 | Network testing | lux-netrunner | `cat skills/lux/lux-netrunner.md` |
 
 ## Full Catalog
@@ -71,6 +72,6 @@ cat skills/lux/INDEX.md
 
 ---
 
-**Last Updated**: 2026-03-22
-**Skills Count**: 34
+**Last Updated**: 2026-03-23
+**Skills Count**: 35
 **Format Version**: 1.0 (Gateway)

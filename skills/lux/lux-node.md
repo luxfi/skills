@@ -448,12 +448,18 @@ make dev-setup          # Download dependencies
 | allvms VMs missing | Wrong build tag | Build with `-tags=allvms` for Q/A/B/T/Z/G/D/K/O/R/I chains |
 | Large binary size | Debug symbols included | Use `make build-release` or `-p tiny` profile for smaller binary |
 
+## Production Deployment
+
+Production validators run on the `lux-k8s` DOKS cluster (`do-sfo3-lux-k8s`). K8s manifests live in `~/work/lux/universe/k8s/` and `~/work/hanzo/universe/infra/k8s/`. The Lux Operator (`github.com/luxfi/operator`) manages validator lifecycle via `LuxNetwork` CRDs. Secrets are synced from `kms.hanzo.ai` via `KMSSecret` CRDs -- never store staking keys or node credentials in manifests.
+
 ## Related Skills
 
 - `lux/lux-consensus.md` -- Quasar consensus engine (separate repo: `github.com/luxfi/consensus`)
 - `lux/lux-evm.md` -- C-Chain EVM execution (separate repo: `github.com/luxfi/evm`)
 - `lux/lux-sdk.md` -- Go SDK for node interaction (`github.com/luxfi/sdk`)
 - `lux/lux-cli.md` -- CLI for node management (`github.com/luxfi/lux-cli`)
+- `lux/lux-operator.md` -- K8s operator for automated validator management
+- `lux/lux-universe.md` -- Production K8s infrastructure and manifests
 
 ---
 
