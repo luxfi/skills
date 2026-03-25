@@ -99,16 +99,63 @@ npx tsx scripts/generate-event-signatures.mts  # Generate ABI signatures
 | Integrations | `/content/integrations/` | Third-party integration guides |
 | Courses | `/content/courses.tsx` | Course catalog definitions |
 
+## White-Label Branding
+
+Lux Build supports per-brand deployments via `NEXT_PUBLIC_*` environment variables:
+
+### Brand Environment Variables
+
+```bash
+NEXT_PUBLIC_BRAND_NAME=Lux          # Brand display name
+NEXT_PUBLIC_BRAND_LOGO=/lux-logo.svg # Logo path
+NEXT_PUBLIC_BRAND_THEME=lux          # Theme identifier
+NEXT_PUBLIC_BRAND_DOMAIN=lux.build   # Canonical domain
+NEXT_PUBLIC_BRAND_CHAIN_ID=96369     # Default chain ID
+```
+
+### Per-Brand .env Files
+
+```
+.env.example.zoo        # Zoo brand: build.zoo.network
+.env.example.hanzo      # Hanzo brand: build.hanzo.ai
+.env.example.pars       # Pars brand: build.pars.network
+.env.example.liquidity  # Liquidity white-label brand
+```
+
+### Brand Hostnames
+
+| Brand | Hostname |
+|-------|----------|
+| Lux | `lux.build` |
+| Zoo | `build.zoo.network` |
+| Hanzo | `build.hanzo.ai` |
+| Pars | `build.pars.network` |
+
 ## Kubernetes Deployment
+
+### Standard Deployment
 
 ```yaml
 # k8s/lux-build.yaml
 Namespace: hanzo
 Image: ghcr.io/hanzoai/lux-build:latest
-Port: 3000 (container) → 80 (service)
+Port: 3000 (container) -> 80 (service)
 Resources: 200m-1000m CPU, 256Mi-1Gi memory
 Probes: HTTP GET / (liveness + readiness)
 ```
+
+### White-Label Deployment
+
+```yaml
+# k8s/build-wl.yaml (in universe repo)
+# Per-brand ConfigMaps + Deployments + IngressRoutes
+# Each brand gets:
+#   - ConfigMap with NEXT_PUBLIC_BRAND_* vars
+#   - Deployment referencing that ConfigMap
+#   - IngressRoute for the brand hostname
+```
+
+The `build-wl.yaml` manifest in `universe/k8s/` defines all brand variants as separate Deployments sharing the same image but with distinct ConfigMaps for branding.
 
 ## Docker Build
 
@@ -133,6 +180,6 @@ Multi-stage build:
 
 ---
 
-**Last Updated**: 2026-03-13
+**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: documentation, developer-portal, academy, build, MDX

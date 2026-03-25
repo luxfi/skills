@@ -16,9 +16,16 @@ Lux Universe is the **production-grade infrastructure monorepo** for running the
 | Nodes per network | 5 validators |
 | Node management | `lux cli` (not Docker) |
 | Services | Docker Compose profiles |
-| Chains | C-Chain (96369), Zoo (200200), Hanzo (36963) |
+| Chains | C-Chain (96369), Zoo (200200), Hanzo (36963, coin=AI), SPC (36911), Pars (494949) |
 | State dir | `~/work/lux/state` |
 | Snapshot dir | `~/.lux/snapshots/` |
+
+## Key Documents
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| `ARCHITECTURE.md` | ~978 | Canonical white-label platform design -- service topology, per-brand config, K8s manifest patterns |
+| `NETWORKS.yaml` | - | Complete ecosystem registry -- all networks, chain IDs, RPC endpoints, explorer URLs |
 
 ## Architecture
 
@@ -42,13 +49,56 @@ Lux Universe is the **production-grade infrastructure monorepo** for running the
 
 ## Port Allocation
 
-| Network | HTTP Ports | Staking Ports | Chain ID | Zoo Chain ID |
-|---------|-----------|---------------|----------|-------------|
-| Mainnet | 9630-9638 (even) | 9631-9639 (odd) | 96369 | 200200 |
-| Testnet | 9640-9648 (even) | 9641-9649 (odd) | 96368 | 200201 |
-| Devnet | 9650-9658 (even) | 9651-9659 (odd) | 1337 | 1338 |
+| Network | HTTP Ports | Staking Ports | C-Chain ID | Zoo | Hanzo | SPC | Pars |
+|---------|-----------|---------------|-----------|-----|-------|-----|------|
+| Mainnet | 9630-9638 (even) | 9631-9639 (odd) | 96369 | 200200 | 36963 | 36911 | 494949 |
+| Testnet | 9640-9648 (even) | 9641-9649 (odd) | 96368 | 200201 | 36964* | 36910 | 7071 |
+| Devnet | 9650-9658 (even) | 9651-9659 (odd) | 1337 | 200202 | 36964 | 36912 | 494951 |
+
+*Hanzo testnet deployed as 36964 (intended 36962, deployment error, immutable).
 
 Service ports: PostgreSQL 5432, Redis 6380, LUX Explorer 4010, Zoo Explorer 4011, Hanzo Explorer 4012, Graph Node 8000, IPFS 5001, Pricing API 8085, LXD Gateway 8080.
+
+### Per-Network API Domains
+
+| Network | API Domain | Path Convention |
+|---------|-----------|-----------------|
+| Mainnet | `api.lux.network` | `/{mainnet}/ext/bc/{chain}/rpc` |
+| Testnet | `api.lux-test.network` | `/ext/bc/{chain}/rpc` (flat, no /testnet/ prefix) |
+| Devnet | `api.lux-dev.network` | `/ext/bc/{chain}/rpc` (flat, no /devnet/ prefix) |
+
+Testnet and devnet use dedicated domains with **flat paths** -- no network prefix needed. Only the mainnet gateway uses `/{mainnet}/` path prefix on the shared `api.lux.network` domain.
+
+### Hanzo Chain Coin
+
+The Hanzo subnet native coin symbol is **AI** (not HANZO). This is set in genesis and reflected in explorer branding and exchange token lists.
+
+## E2E Test Suite
+
+21 spec files covering ~511 tests for all ecosystem services:
+
+| Category | Spec Files | Coverage |
+|----------|-----------|----------|
+| Health | node health, API gateway, chain sync | RPC liveness, block heights, peer counts |
+| Explorer | C-Chain, Zoo, Hanzo, SPC, Pars | Block indexing, token metadata, contract verification |
+| Exchange | swap, pool, token list | AMM quoting, LP operations, token registry |
+| Bridge | cross-chain, MPC signing | Asset locking, attestation, withdrawal |
+| Staking | delegation, rewards | Validator registration, reward distribution |
+| MPC | keygen, signing | Threshold key generation, multi-party signing |
+| Broker | order routing | SOR, multi-provider routing, settlement |
+
+Run: `make test-e2e` or `npx playwright test` from `e2e/` directory.
+
+## White-Label K8s Manifests
+
+| Manifest | Purpose |
+|----------|---------|
+| `k8s/build-wl.yaml` | Per-brand ConfigMaps + Deployments + IngressRoutes for lux.build white-label |
+| `k8s/exchange-whitelabel.yaml` | Per-brand exchange deployments (zoo, pars, liquidity brands) |
+| `k8s/faucet.yaml` | Testnet/devnet faucet deployment |
+| `k8s/wallet.yaml` | Wallet deployment with brand-specific env vars |
+
+Each white-label manifest uses `NEXT_PUBLIC_BRAND_*` env vars injected via ConfigMaps for per-brand theming.
 
 ## Network Operations
 
@@ -298,5 +348,5 @@ universe/
 
 ---
 
-**Last Updated**: 2026-03-13
+**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem

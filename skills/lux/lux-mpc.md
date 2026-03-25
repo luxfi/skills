@@ -5,7 +5,7 @@
 
 ## Overview
 
-Lux MPC (`mpcd`) is a **distributed threshold signing service** for securely generating and managing cryptographic wallets across MPC nodes -- without ever exposing the full private key. It uses CGGMP21 for ECDSA (secp256k1) and FROST for EdDSA (Ed25519), supporting Bitcoin, Ethereum, XRPL, Solana, TON, and Lux Network.
+Lux MPC (`mpcd`) is a **distributed threshold signing service** for securely generating and managing cryptographic wallets across MPC nodes -- without ever exposing the full private key. It supports 5 signing protocols (CGGMP21, FROST, LSS, BLS, SR25519) across 7+ blockchain families (BTC, ETH, SOL, TON, XRP, DOT, KSM) with consensus-embedded transport (ZAP protocol) and per-tenant isolation via OrgID scoping.
 
 ## Quick reference
 
@@ -55,6 +55,29 @@ mpcd
 └── dashboard/             # Dashboard UI
 ```
 
+## Signing Protocols
+
+| Protocol | Curve | Use Case |
+|----------|-------|----------|
+| CGGMP21 | secp256k1 | ECDSA signing for BTC (Legacy/SegWit), ETH/EVM, XRP, Lux |
+| FROST | Ed25519 | EdDSA signing for SOL, TON, BTC (Taproot) |
+| LSS | secp256k1 | Lightweight secret sharing (alternative ECDSA) |
+| BLS | BLS12-381 | Aggregate threshold signatures |
+| SR25519 | Ristretto | Substrate/Polkadot/Kusama signing |
+
+## Multi-Chain Support
+
+| Network | Curve | Protocol | Address Derivation |
+|---------|-------|----------|--------------------|
+| Bitcoin (Legacy/SegWit) | secp256k1 | CGGMP21/LSS | BIP32/BIP44 |
+| Bitcoin (Taproot) | secp256k1 | FROST | BIP86 |
+| Ethereum/EVM | secp256k1 | CGGMP21/LSS | BIP44 m/44'/60'/0'/0/i |
+| Solana | Ed25519 | FROST | BIP44 m/44'/501'/0'/0' |
+| TON | Ed25519 | FROST | TON-specific |
+| XRPL | secp256k1 | CGGMP21/LSS | XRPL derivation |
+| Polkadot/Kusama | Ristretto | SR25519 | Substrate SS58 |
+| Lux Network | secp256k1 | CGGMP21/LSS | BIP44 m/44'/9000'/0'/0/i |
+
 ## Threshold Scheme
 
 Uses **t-of-n** threshold signing with `t >= floor(n/2) + 1`:
@@ -63,13 +86,23 @@ Uses **t-of-n** threshold signing with `t >= floor(n/2) + 1`:
 - `t` = minimum nodes required to sign
 - Full private key is **never reconstructed**
 
-Example (2-of-3): `node0 + node1` signs, `node0 alone` cannot.
+### Production Topology: 3-of-5
+
+Standard deployment uses 3-of-5 threshold:
+- **Customer operates 2 nodes** (self-custody partial control)
+- **Lux operates 3 nodes** (infrastructure reliability)
+- Any 3 nodes can sign (customer + 1 Lux, or 2 customer + 1 Lux)
+- No single party can sign unilaterally
+
+### Safe Multisig Integration
+
+MPC-generated keys can be used as Safe multisig owners, combining MPC threshold signing with smart contract-level governance. The bridge and custody products use this pattern for institutional-grade security.
 
 ## Transport Modes
 
-### Consensus-Embedded (Recommended)
+### Consensus-Embedded (Production Standard)
 
-No external dependencies. Uses ZAP wire protocol with PoA membership:
+No external dependencies (no NATS, no Consul). Uses ZAP wire protocol with PoA membership:
 
 ```bash
 mpcd start --mode consensus \
@@ -92,6 +125,59 @@ lux-mpc-cli register-peers
 lux-mpc-cli generate-initiator
 mpcd start --mode legacy -n node0
 ```
+
+## Multi-Tenant Isolation (OrgID)
+
+All key material is scoped to an OrgID for per-tenant isolation:
+
+```go
+// GetKeyShareWithFallback tries org-scoped key first, falls back to global
+func GetKeyShareWithFallback(db ZapDB, orgID, walletID string) (*KeyShare, error) {
+    key := OrgScopedKey(orgID, walletID)  // "org:{orgID}:wallet:{walletID}"
+    share, err := db.Get(key)
+    if err == ErrNotFound {
+        return db.Get(walletID)  // Legacy fallback (pre-org migration)
+    }
+    return share, err
+}
+```
+
+- Keygen sessions tag shares with OrgID at creation time
+- Signing sessions validate OrgID matches before proceeding
+- Dashboard API filters entities by `orgId` from JWT claims
+- Migration path: legacy keys without OrgID are accessible via fallback
+
+## Secret Erasure
+
+Key material is zeroed after use via `defer` patterns:
+
+```go
+defer func() {
+    for i := range secretBytes {
+        secretBytes[i] = 0
+    }
+}()
+```
+
+Note: `runtime/secret` package is a placeholder -- actual zeroing is done inline with defer. The Go runtime does not guarantee memory erasure, but this pattern prevents accidental retention in heap.
+
+## Storage Layer (ZapDB)
+
+Uses `github.com/luxfi/database` (ZapDB abstraction) -- NOT BadgerDB directly:
+
+- ChaCha20-Poly1305 encryption at rest (password from env `BADGER_PASSWORD`)
+- CBOR serialization for FROST/LSS configs (JSON corrupts crypto types)
+- Automatic compaction and garbage collection
+- Encrypted backup/restore with configurable intervals
+
+## Authentication
+
+JWT auth with KMS-sourced secrets:
+
+- Dashboard API validates JWT tokens on every request
+- JWT signing keys sourced from KMS (kms.hanzo.ai) -- never hardcoded
+- No default/fallback secrets in production (`MPC_JWT_SECRET` must be set)
+- Token claims include `orgId`, `role`, `permissions`
 
 ## One-file quickstart
 
@@ -158,17 +244,9 @@ github.com/hanzoai/orm@v0.3.2       -- ORM for dashboard API
 github.com/hanzoai/kv-go/v9         -- Valkey/Redis client
 ```
 
-## Supported Networks
+## Supported Networks (Legacy Table)
 
-| Network | Curve | Protocol |
-|---------|-------|----------|
-| Bitcoin (Legacy/SegWit) | secp256k1 | CGGMP21/LSS |
-| Bitcoin (Taproot) | secp256k1 | FROST |
-| Ethereum/EVM | secp256k1 | CGGMP21/LSS |
-| XRPL | secp256k1 | CGGMP21/LSS |
-| Lux Network | secp256k1 | CGGMP21/LSS |
-| Solana | Ed25519 | FROST (Taproot mode) |
-| TON | Ed25519 | FROST (Taproot mode) |
+See "Multi-Chain Support" table above for the complete and current list.
 
 ## Production Deployment
 
@@ -217,7 +295,7 @@ make test-coverage
 
 ---
 
-**Last Updated**: 2026-03-13
+**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: mpc, threshold, signing, custody, wallet
 **Prerequisites**: Go 1.26+

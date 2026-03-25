@@ -149,12 +149,14 @@ Cache strategy: tokens/chains 5min, pools/positions 30s, quotes/prices 5s, Graph
 | Lux Testnet | 96368 | LUX | `https://api.lux.network/testnet/ext/bc/C/rpc` | `explore.lux-test.network` |
 | Zoo Mainnet | 200200 | ZOO | `https://api.zoo.network/rpc` | `explore.zoo.network` |
 | Zoo Testnet | 200201 | ZOO | `https://api.zoo-test.network/rpc` | `explore.zoo-test.network` |
-| Hanzo Network | 36963 | HANZO | Lux subnet RPC | `explore-hanzo.lux.network` |
-| SPC Network | 36911 | SPC | Lux subnet RPC | `explore-spc.lux.network` |
-| Pars Network | 494949 | PARS | Lux subnet RPC | `explore-pars.lux.network` |
+| Hanzo Network | 36963 | AI | Lux subnet RPC (`/ext/bc/hanzo/rpc`) | `explore-hanzo.lux.network` |
+| SPC Network | 36911 | SPC | Lux subnet RPC (`/ext/bc/spc/rpc`) | `explore-spc.lux.network` |
+| Pars Network | 494949 | PARS | Lux subnet RPC (`/ext/bc/pars/rpc`) | `explore-pars.lux.network` |
 | Lux Dev | 1337 | LUX | `http://localhost:8545/ext/bc/C/rpc` | local |
 
 All chain definitions are in `packages/config/src/chains.ts` using viem's `defineChain()`.
+
+**RPC URL convention**: Subnet chains use alias routes (`/ext/bc/hanzo/rpc`, `/ext/bc/spc/rpc`, `/ext/bc/pars/rpc`, `/ext/bc/zoo/rpc`) -- NOT raw blockchain IDs. Aliases are registered in node startup configmaps.
 
 ### 2. Contract Addresses
 
@@ -517,6 +519,68 @@ Standard WETH-style wrapper for native LUX. `deposit()` via payable function or 
 
 ---
 
+## White-Label Branding
+
+The exchange supports full white-label branding via `config/brand.ts` and `NEXT_PUBLIC_BRAND_*` environment variables.
+
+### Brand Configuration
+
+```typescript
+// config/brand.ts
+export const brand = {
+  name: process.env.NEXT_PUBLIC_BRAND_NAME ?? 'Lux',
+  logo: process.env.NEXT_PUBLIC_BRAND_LOGO ?? '/lux-logo.svg',
+  theme: process.env.NEXT_PUBLIC_BRAND_THEME ?? 'lux',
+  // ... colors, fonts, social links
+}
+```
+
+### Per-Brand .env Files
+
+```
+.env.example.zoo        # Zoo brand (zoo.exchange)
+.env.example.pars       # Pars brand (pars.exchange)
+.env.example.liquidity  # White-label (liquidity brand)
+```
+
+Each file sets `NEXT_PUBLIC_BRAND_NAME`, `NEXT_PUBLIC_BRAND_LOGO`, `NEXT_PUBLIC_BRAND_THEME`, default chain IDs, and RPC endpoints.
+
+### Subnet Chain Coins
+
+| Chain | Chain ID | Native Coin Symbol |
+|-------|----------|--------------------|
+| Hanzo | 36963 | AI (not HANZO) |
+| SPC | 36911 | SPC |
+| Pars | 494949 | PARS |
+| Zoo | 200200 | ZOO |
+
+### SwapFormStore Context Pattern
+
+The swap form uses a Zustand store wrapped in a React context provider:
+
+```typescript
+// WithSwapFormStore wraps pages that need swap state
+<WithSwapFormStore>
+  <SwapPage />
+</WithSwapFormStore>
+
+// Inside components, access via hook:
+const { tokenIn, tokenOut, setTokenIn, setTokenOut, switchTokens } = useSwapFormStore()
+```
+
+The `WithSwapFormStore` wrapper creates an isolated store instance per swap form, preventing state leakage between concurrent swap UIs.
+
+### Production Build (Vite SPA)
+
+The production build is a **Vite SPA** (not Next.js SSR). The Next.js App Router is used for development only:
+
+```bash
+cd apps/web && ../../node_modules/.bin/vite build
+# Output: apps/web/public/ (served by `serve -s public -l 3000`)
+```
+
+---
+
 ## Development
 
 ### Prerequisites
@@ -710,7 +774,7 @@ api-exchange.lux.network -> exchange-api (:4000)
 
 - `@uniswap/router-sdk` internally depends on `@uniswap/*` SDKs, causing TypeScript errors when types cross boundaries with `@luxamm/*`. Workaround: type assertions (`as unknown as`) in swap analytics and trading utilities.
 - ~212 type errors remain in UI components due to SDK type mismatches (do not affect runtime).
-- SPC Mainnet (36911) deployment blocked -- genesis key unknown.
+- SPC Mainnet (36911) deployed and operational.
 - Backend API URLs (`api.uniswap.org`, `liquidity.backend-prod.api.uniswap.org`) still point to Uniswap infrastructure for non-Lux chains.
 
 ## Related Skills
@@ -724,7 +788,7 @@ api-exchange.lux.network -> exchange-api (:4000)
 
 ---
 
-**Last Updated**: 2026-03-13
+**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: dex, defi, amm, swap, clob, matching-engine, cross-chain, privacy, zk
 **Prerequisites**: TypeScript, Bun, Solidity, DeFi/AMM concepts, Go (for proxy)

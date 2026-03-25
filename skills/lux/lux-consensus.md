@@ -395,6 +395,41 @@ ZAP includes a `StakeRegistry` interface for stake-weighted voting:
 - `GetStake(did)` / `SetStake(did, amount)` / `TotalStake()`
 - `HasSufficientStake(did, minimum)` / `StakeWeight(did)` (fraction of total)
 
+## Security Hardening (2026-03-24)
+
+### Quasar Dual BLS+Ringtail Threshold Consensus
+
+The dual-certificate model was hardened with the following fixes:
+
+1. **Constant-time proof comparison**: All BLS and Ringtail proof verification uses constant-time byte comparison (`subtle.ConstantTimeCompare`) to prevent timing side-channels.
+
+2. **BLS deserialization validation**: BLS public keys and signatures are fully validated on deserialization (subgroup check, infinity check, point-on-curve). Previously, malformed keys could cause panics in aggregate verification.
+
+3. **Sorted validator keys**: Validator key sets are always sorted by NodeID before BLS aggregation and Ringtail threshold operations. Unsorted keys caused non-deterministic aggregate signatures across nodes.
+
+### CBD Sampler (FIPS 203 Constant-Time)
+
+The Centered Binomial Distribution sampler for Ringtail key generation now uses FIPS 203 compliant constant-time operations:
+- No branching on secret data
+- Bitwise extraction replaces conditional loops
+- Eliminates timing leakage during polynomial coefficient sampling
+
+### SIMD NTT (AVX2 Vectorized, Go 1.26)
+
+Number Theoretic Transform operations use AVX2 vectorization via `goexperiment.simd` (Go 1.26+):
+- 4x butterfly operations per SIMD instruction
+- Montgomery reduction fully vectorized
+- Enabled with build tag: `//go:build goexperiment.simd`
+- Fallback to scalar NTT on non-AVX2 hardware (automatic detection)
+- Benchmark: ~3x speedup for Ringtail key generation on AVX2 hardware
+
+### HMAC-SHA256 Keyed Certificates
+
+Certificate integrity now uses HMAC-SHA256 with per-epoch keying material (not plain SHA256):
+- Epoch key derived from Ringtail group key via HKDF
+- Prevents certificate forgery by nodes not in the current epoch
+- Backwards compatible: old plain-SHA256 certificates still verify during migration epoch
+
 ## Security Model
 
 ### Adversary Model
@@ -546,7 +581,7 @@ go test ./consensus/zap/...
 
 ---
 
-**Last Updated**: 2026-03-13
+**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: consensus, quasar, post-quantum, bft, finality, ringtail, zap, photon, wave
 **Prerequisites**: Distributed systems, BFT concepts, post-quantum cryptography

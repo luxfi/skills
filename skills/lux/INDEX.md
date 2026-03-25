@@ -27,7 +27,7 @@ Unified Go EVM engine. `github.com/luxfi/evm` v0.8.35+. Coreth merged in. DEX pr
 Legacy C-Chain EVM (merged into lux-evm). `github.com/luxfi/coreth`.
 
 **Lux Quasar** (`lux-consensus.md`)
-Post-quantum consensus engine with Photonic Selection. 2-round finality. Dual BLS+lattice certificates.
+Post-quantum consensus engine with Photonic Selection. 2-round finality. Dual BLS+Ringtail threshold certificates. CBD sampler (FIPS 203), SIMD NTT (AVX2), HMAC-SHA256 keyed certificates. Security hardened 2026-03-24.
 
 **Lux DEX** (`lux-dex.md`)
 CLOB order matching engine. 434M+ orders/sec (GPU). Go + C++ + Rust + MLX. FIX protocol.
@@ -71,7 +71,7 @@ Multisig smart accounts. Safe-Global fork v1.5.0. ERC-4337. Solidity 0.7.6 / Har
 Custom EVM precompiles, SessionVM, ERC20 Go implementation.
 
 **Lux MPC** (`lux-mpc.md`)
-Distributed threshold signing service (`mpcd`). CGGMP21 (ECDSA) + FROST (EdDSA). 20+ chains.
+Distributed threshold signing service (`mpcd`). 5 protocols (CGGMP21, FROST, LSS, BLS, SR25519). 7+ chain families (BTC, ETH, SOL, TON, XRP, DOT, KSM). Consensus-embedded ZAP transport. OrgID per-tenant isolation. 3-of-5 topology. Safe multisig integration. ZapDB storage, JWT/KMS auth.
 
 **Lux Ringtail** (`lux-ringtail.md`)
 Post-quantum signature scheme for Lux consensus.
@@ -105,7 +105,7 @@ CLI for chain creation, deployment, validator management. `github.com/luxfi/cli`
 Local network runner. gRPC + HTTP gateway. Snapshot save/load. `github.com/luxfi/netrunner`.
 
 **Lux Build** (`lux-build.md`)
-Developer portal and documentation hub. Next.js 16 + Fumadocs. build.lux.network.
+Developer portal and documentation hub. Next.js 16 + Fumadocs. White-label via NEXT_PUBLIC_* env vars. .env.example.{zoo,hanzo,pars,liquidity} brand files. K8s: build-wl.yaml with per-brand ConfigMaps + Deployments + IngressRoutes. Hostnames: lux.build, build.zoo.network, build.hanzo.ai, build.pars.network.
 
 **Lux Plugins** (`lux-plugins.md`)
 VM & subnet plugin registry for Lux Plugin Manager (LPM). YAML definitions.
@@ -150,7 +150,7 @@ KYC/AML/regulatory framework. `github.com/luxfi/compliance`. IDV (Jumio, Onfido,
 ### DeFi & Markets (7 skills)
 
 **Lux Exchange** (`lux-exchange.md`)
-DEX frontend + omnichain routing. Uniswap-based with native precompiles + CLOB integration.
+DEX frontend + omnichain routing. Uniswap-based with native precompiles + CLOB integration. White-label via config/brand.ts + NEXT_PUBLIC_BRAND_* env vars. Vite SPA production build. SwapFormStore context pattern. Subnet chains: Hanzo=36963 (coin AI), SPC=36911, Pars=494949. RPC alias routes (/ext/bc/hanzo/rpc).
 
 **Lux Exchange API** (`lux-exchange-api.md`)
 DEX API backend for programmatic trading.
@@ -198,7 +198,7 @@ C++ library suite: lux-gpu, lux-crypto, lux-lattice, lux-fhe, lux-dex. CMake + C
 Bootstrap node infrastructure and multi-chain RPC API (bootno.de). K8s manifests in universe. Powers bootno.de, cloud.lux.network, web3.hanzo.ai.
 
 **Lux Universe** (`lux-universe.md`)
-Production K8s infrastructure (private repo).
+Production K8s infrastructure monorepo. ARCHITECTURE.md (978 lines, canonical WL platform design). NETWORKS.yaml (ecosystem registry). 21 E2E spec files (~511 tests). Per-network API domains (api.lux.network, api.lux-test.network, api.lux-dev.network). White-label K8s manifests: build-wl.yaml, exchange-whitelabel.yaml, faucet.yaml, wallet.yaml. Chain IDs: Pars mainnet=494949, testnet=7071, devnet=494951.
 
 **Lux Stack** (`lux-stack.md`)
 Local dev environment: Docker Compose with all services.
@@ -355,6 +355,6 @@ What do you need?
 
 ---
 
-**Last Updated**: 2026-03-23
+**Last Updated**: 2026-03-24
 **Total Skills**: 80
 **Gateway**: `discover-lux/SKILL.md`
