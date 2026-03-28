@@ -1,0 +1,49 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "luxfi-skills",
+  "description": "Atomic skills for AI assistants working with the Lux blockchain ecosystem — 80+ skills covering node operations, consensus, EVM, wallets, bridges, exchanges, and more",
+  "owner": {
+    "name": "Lux Network",
+    "email": "support@lux.network",
+    "url": "https://github.com/luxfi"
+  },
+  "plugins": [
+    {
+      "name": "lux-skills",
+      "source": "./",
+      "description": "80+ atomic skills for the Lux blockchain stack — node operations, Quasar consensus, EVM, wallets, bridges, exchanges, MPC, FHE, compliance, monitoring, and developer tools. Progressive loading with auto-discovery gateway.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Lux Network",
+        "email": "support@lux.network",
+        "url": "https://github.com/luxfi"
+      },
+      "homepage": "https://github.com/luxfi/skills",
+      "repository": "https://github.com/luxfi/skills",
+      "license": "MIT",
+      "keywords": [
+        "lux",
+        "blockchain",
+        "consensus",
+        "quasar",
+        "evm",
+        "wallet",
+        "bridge",
+        "exchange",
+        "node",
+        "validator",
+        "staking",
+        "post-quantum",
+        "fhe",
+        "mpc",
+        "skills",
+        "progressive-loading"
+      ],
+      "category": "development",
+      "strict": false,
+      "commands": [
+        "./commands/skills.md"
+      ]
+    }
+  ]
+}

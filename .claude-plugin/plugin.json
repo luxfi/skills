@@ -1,0 +1,23 @@
+{
+  "name": "luxfi-skills",
+  "version": "1.0.0",
+  "description": "Atomic skills for AI assistants working with the Lux blockchain ecosystem — node operations, consensus, EVM, wallets, bridges, and more",
+  "author": "Lux Network",
+  "homepage": "https://github.com/luxfi/skills",
+  "repository": "https://github.com/luxfi/skills",
+  "license": "MIT",
+  "keywords": [
+    "lux",
+    "blockchain",
+    "consensus",
+    "evm",
+    "wallet",
+    "bridge",
+    "node",
+    "validator",
+    "staking",
+    "crypto",
+    "post-quantum",
+    "skills"
+  ]
+}
