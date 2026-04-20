@@ -46,7 +46,7 @@ Uses `github.com/luxfi/indexer/dag` -- multiple parents per vertex for fast cons
 | Chain | Port | Database | RPC Method | Description |
 |-------|------|----------|-----------|-------------|
 | X-Chain | 4200 | explorer_xchain | `xvm` | Asset exchange, UTXOs |
-| A-Chain | 4500 | explorer_achain | `avm` | AI compute, attestations |
+| A-Chain | 4500 | explorer_achain | `xvm` | AI compute, attestations |
 | B-Chain | 4600 | explorer_bchain | `bvm` | Cross-chain bridge |
 | Q-Chain | 4300 | explorer_qchain | `qvm` | Quantum finality proofs |
 | T-Chain | 4700 | explorer_tchain | `tvm` | MPC threshold signatures |

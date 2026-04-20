@@ -40,7 +40,7 @@ All VMs implement the `chain.ChainVM` interface from `github.com/luxfi/vm/chain`
 | Chain | Letter | VM Package | VMID | Consensus | Model | Purpose |
 |-------|--------|------------|------|-----------|-------|---------|
 | Platform | P | `platformvm` | `platformvm` | Linear | Account | Validators, staking, subnet/L1 creation |
-| Exchange | X | `exchangevm` | `avm` | DAG | UTXO | Asset creation and transfers |
+| Exchange | X | `exchangevm` | `xvm` | DAG | UTXO | Asset creation and transfers |
 | Contract | C | EVM plugin | `evm` | Linear | Account | EVM smart contracts |
 | Quantum | Q | `quantumvm` | `quantumvm` | Linear | Account | Post-quantum crypto, Ringtail keys |
 | AI | A | `aivm` | `aivm` | Linear | Account | AI compute attestation, TEE verification |
@@ -166,7 +166,7 @@ The `ChainRegistry` in `github.com/luxfi/constants@v1.4.4/chain_registry.go` pro
 | Property | Value |
 |----------|-------|
 | VM | ExchangeVM |
-| VM ID | `avm` (aliases: `ExchangeVMID`, `XVMID`) |
+| VM ID | `xvm` (aliases: `ExchangeVMID`, `XVMID`) |
 | Package | `github.com/luxfi/node/vms/exchangevm` |
 | Consensus | DAG (Lux/Avalanche) |
 | Model | UTXO-based |
@@ -205,7 +205,7 @@ The `ChainRegistry` in `github.com/luxfi/constants@v1.4.4/chain_registry.go` pro
 - `github.com/luxfi/utxo/propertyfx` -- Property FX
 
 **API Endpoint**: `POST /ext/bc/X`
-**API Namespace**: `avm.*`
+**API Namespace**: `xvm.*`
 
 **Key Subpackages**:
 - `txs/` -- Transaction types (BaseTx, CreateAssetTx, OperationTx, ExportTx, ImportTx)

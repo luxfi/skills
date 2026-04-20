@@ -171,7 +171,7 @@ curl -X POST http://localhost:9630/ext/bc/C/rpc \
 
 # X-Chain: asset balance
 curl -X POST http://localhost:9630/ext/bc/X \
-  -d '{"jsonrpc":"2.0","id":1,"method":"avm.getBalance","params":{"address":"X-lux1...","assetID":"LUX"}}'
+  -d '{"jsonrpc":"2.0","id":1,"method":"xvm.getBalance","params":{"address":"X-lux1...","assetID":"LUX"}}'
 ```
 
 ### Go SDK client
