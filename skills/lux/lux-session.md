@@ -343,7 +343,6 @@ KV interface with namespaced prefixes: `session:`, `step:`, `oracle:`, `receipt:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: session, daemon, oracle, attestation, post-quantum, ML-KEM, ML-DSA, swarm, committee
 **Prerequisites**: Go 1.26+

@@ -164,7 +164,6 @@ npm run install:rabbyX
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: wallet, desktop, electron, dapp-browser, ipfs
 **Prerequisites**: Node.js v14+, npm, platform-specific build tools (Xcode/VS Build Tools)

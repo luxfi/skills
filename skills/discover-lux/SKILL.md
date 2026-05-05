@@ -72,6 +72,5 @@ cat skills/lux/INDEX.md
 
 ---
 
-**Last Updated**: 2026-03-23
 **Skills Count**: 35
 **Format Version**: 1.0 (Gateway)

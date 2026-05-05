@@ -269,7 +269,6 @@ import "github.com/luxfi/sdk/validatormanager"
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: sdk, go, client, api, blockchain, wallet, validator, contract
 **Prerequisites**: Go, Lux node concepts

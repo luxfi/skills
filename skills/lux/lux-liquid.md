@@ -169,7 +169,6 @@ forge doc
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: defi, lending, yield, alchemist, transmuter, solidity, foundry
 **Prerequisites**: Foundry (forge, cast, anvil), Node.js (for docs)

@@ -279,7 +279,6 @@ Static export deployed via standard hosting (no Docker). The `vercel.json` or eq
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: bitcoin, mining, energy, static-site, nextjs, mdx, marketing
 **Prerequisites**: Node.js 20+, pnpm 10+

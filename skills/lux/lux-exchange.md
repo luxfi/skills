@@ -788,7 +788,6 @@ api-exchange.lux.network -> exchange-api (:4000)
 
 ---
 
-**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: dex, defi, amm, swap, clob, matching-engine, cross-chain, privacy, zk
 **Prerequisites**: TypeScript, Bun, Solidity, DeFi/AMM concepts, Go (for proxy)

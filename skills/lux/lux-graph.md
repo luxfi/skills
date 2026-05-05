@@ -216,7 +216,6 @@ GraphiQL interface available at `http://127.0.0.1:8000/`.
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: graph, indexer, graphql, subgraph, ethereum, c-chain, postgresql
 **Prerequisites**: Rust (stable), PostgreSQL, IPFS, 8GB+ RAM

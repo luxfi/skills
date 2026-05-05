@@ -357,7 +357,6 @@ CEX_JWT_SECRET=xxx       CEX_JWT_ISSUER=https://hanzo.id
 
 ---
 
-**Last Updated**: 2026-03-22
 **Category**: Lux Ecosystem
 **Related**: ats, broker-dealer, transfer-agent, regulated, finra, sec, compliance, kyc, aml
 **Prerequisites**: Go 1.26.1, understanding of US securities regulation

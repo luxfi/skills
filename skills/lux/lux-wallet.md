@@ -405,7 +405,6 @@ yarn reinstall            # Clean + install
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: wallet, hd, bip32, bip39, bip340, multi-chain, hardware-wallet, aes256, secp256k1, ed25519
 **Prerequisites**: BIP-32/39/44 standards, elliptic curve cryptography, UTXO vs account model

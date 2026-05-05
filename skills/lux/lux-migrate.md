@@ -183,7 +183,6 @@ go build -o bin/import-jsonl ./cmd/import-jsonl/
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: migration, regenesis, blocks, state-trie, jsonl, pebbledb, badgerdb
 **Prerequisites**: Go 1.25+, access to source chain database or running Lux node

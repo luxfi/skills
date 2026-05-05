@@ -227,7 +227,6 @@ go list -tags=grpc -deps ./rpc | grep grpc  # Shows ~62 deps (gRPC build)
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: vm, interface, rpc, zap, grpc, plugin, chain
 **Prerequisites**: Go 1.26+

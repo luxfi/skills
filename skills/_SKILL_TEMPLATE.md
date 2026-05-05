@@ -102,7 +102,6 @@ Before proceeding, silently verify:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: blockchain, consensus, crypto
 **Prerequisites**: Go, blockchain fundamentals

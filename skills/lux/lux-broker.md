@@ -381,7 +381,6 @@ func (p *Provider) Name() string { return "myprovider" }
 
 ---
 
-**Last Updated**: 2026-03-22
 **Category**: Lux Ecosystem
 **Related**: broker, trading, sor, smart-order-routing, providers, settlement, market-data
 **Prerequisites**: Go 1.26.1, understanding of brokerage/trading concepts

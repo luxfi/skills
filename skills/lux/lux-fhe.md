@@ -8,7 +8,7 @@ Lux FHE (`github.com/luxfi/fhe`) is a pure-Go Fully Homomorphic Encryption libra
 
 ### Why
 
-FHE enables computation on encrypted data without decryption. On a blockchain, this means smart contracts can process encrypted balances, votes, bids, and analytics while the underlying values remain hidden. Lux FHE is the cryptographic foundation for confidential EVM execution on Lux C-Chain and T-Chain.
+FHE enables computation on encrypted data without decryption. On a blockchain, this means smart contracts can process encrypted balances, votes, bids, and analytics while the underlying values remain hidden. Lux FHE is the cryptographic foundation for confidential EVM execution on Lux C-Chain and **F-Chain** (per LP-134; legacy: T-Chain FHE).
 
 ### Tech Stack
 
@@ -393,7 +393,7 @@ luxd (--dev mode)
 │       TrivialEncrypt, VerifyCiphertext
 │       Decrypt, Reencrypt
 │
-└── T-Chain (ThresholdVM)
+└── F-Chain (ThresholdVM-FHE, per LP-134; legacy: T-Chain)
     └── FHE RPC Service (vms/thresholdvm/fhe/)
         GetPublicParams, RegisterCiphertext
         RequestDecrypt / GetDecryptResult

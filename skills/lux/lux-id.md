@@ -197,7 +197,6 @@ This site follows the standard pattern used across all Lux ecosystem sites (`@lu
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: identity, auth, web3, frontend, nextjs, static-site
 **Prerequisites**: Node.js 20+, pnpm 10+

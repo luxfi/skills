@@ -219,7 +219,6 @@ Spaces of length 66 (format: `0x` + hex-encoded address) are reserved for the co
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: spacesvm, storage, key-value, eip-712, subnets, custom-vm
 **Prerequisites**: Go 1.26+, Luxd node

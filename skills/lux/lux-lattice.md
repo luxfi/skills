@@ -358,7 +358,6 @@ The `github.com/luxfi/consensus` module uses lattice crypto for post-quantum cer
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: lattice, post-quantum, rlwe, rgsw, bfv, bgv, ckks, homomorphic, multiparty, threshold, dag
 **Prerequisites**: Lattice cryptography, polynomial rings, RNS arithmetic

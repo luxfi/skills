@@ -135,5 +135,4 @@ go test -v ./...
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem

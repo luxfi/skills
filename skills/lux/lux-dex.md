@@ -420,7 +420,6 @@ The DEX engine integrates with `github.com/luxfi/exchange` via precompiles:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: dex, clob, order-matching, high-frequency, gpu, fpga, fix, grpc, websocket, zap, perpetuals, margin, clearing
 **Prerequisites**: Go, understanding of CLOB mechanics, FIX protocol

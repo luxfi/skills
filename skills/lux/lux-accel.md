@@ -344,7 +344,6 @@ CGO_ENABLED=1 go build ./...
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: gpu, metal, cuda, webgpu, fhe, crypto, lattice, ntt, msm, tfhe, bls12-381, poseidon2, dex, session
 **Prerequisites**: CMake 3.20+, C++17 compiler, macOS 12+ (Metal) or CUDA 12.0+ (NVIDIA) or Dawn (WebGPU)

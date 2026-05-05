@@ -214,7 +214,6 @@ cmake --build build
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: gpu, metal, cuda, tensor, crypto-acceleration, fhe, ml
 **Prerequisites**: Go 1.22+, CGO for GPU backends, Apple Silicon or NVIDIA GPU

@@ -186,7 +186,6 @@ The `REVERSE_PROXIES` setting in `GLOBAL_RL` controls how many trusted proxies t
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: faucet, testnet, tokens, subnet
 **Prerequisites**: Node.js v17+, pnpm v8+, Google ReCaptcha keys

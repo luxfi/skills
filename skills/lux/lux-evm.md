@@ -623,7 +623,6 @@ cd contracts && npx hardhat test
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: evm, ethereum, smart-contracts, c-chain, solidity, precompiles, warp
 **Prerequisites**: Go 1.26.1, EVM/Ethereum concepts, luxd node

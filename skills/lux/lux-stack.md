@@ -211,5 +211,4 @@ The stack is designed so that every configurable value flows from `.env` into co
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem

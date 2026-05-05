@@ -165,7 +165,6 @@ npx hardhat test
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: fhe, fhevm, privacy, confidential-computing, solidity, encrypted-state
 **Prerequisites**: Rust 1.87+, Node.js (Hardhat), PostgreSQL (coprocessor)

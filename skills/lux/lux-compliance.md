@@ -487,7 +487,6 @@ func setupCompliance() {
 
 ---
 
-**Last Updated**: 2026-03-22
 **Category**: Lux Ecosystem
 **Related**: compliance, kyc, aml, sanctions, travel-rule, jube, jumio, onfido, plaid, finra, sec
 **Prerequisites**: Go 1.26.1, understanding of KYC/AML/regulatory compliance

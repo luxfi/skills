@@ -365,7 +365,6 @@ Test utilities in `p2ptest/`:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: `lux/lux-node.md`, `lux/lux-netrunner.md`, `lux/lux-evm.md`
 **Prerequisites**: Go 1.26+, understanding of Quasar consensus

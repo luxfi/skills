@@ -275,5 +275,4 @@ The Lux Operator (`github.com/luxfi/operator`) manages validator lifecycle via C
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem

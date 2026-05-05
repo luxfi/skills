@@ -167,7 +167,6 @@ Pre-configured manifests for mainnet/testnet/devnet:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: kubernetes, operator, CRD, deployment, infrastructure
 **Prerequisites**: Rust 1.88+, Kubernetes 1.28+

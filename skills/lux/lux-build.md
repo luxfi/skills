@@ -180,6 +180,5 @@ Multi-stage build:
 
 ---
 
-**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: documentation, developer-portal, academy, build, MDX

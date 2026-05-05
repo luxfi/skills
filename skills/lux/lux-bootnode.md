@@ -92,7 +92,6 @@ kubectl kustomize . | kubectl apply -f -
 
 ---
 
-**Last Updated**: 2026-03-23
 **Category**: Lux Ecosystem
 **Related**: bootnode, bootstrap, peer-discovery, rpc-api, infrastructure
 **Prerequisites**: K8s access for deployment, or API key for RPC access

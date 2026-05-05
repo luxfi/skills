@@ -141,7 +141,6 @@ oracle/
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: oracle, defi, price-feed, optimistic-oracle
 **Prerequisites**: Node.js v14+, Yarn, Solidity, Ganache-CLI

@@ -211,7 +211,6 @@ The repo is deployed on Vercel but only serves as a redirect. Token data is cons
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: tokens, bridge, logos, registry, asset-list, coingecko
 **Prerequisites**: Python 3, pandas, pycoingecko (for ranked lists)

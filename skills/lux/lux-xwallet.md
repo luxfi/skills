@@ -159,7 +159,6 @@ recharts                   -- Charts
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: wallet, browser-extension, chrome, firefox, defi, evm, keyring
 **Prerequisites**: Node.js v14+, pnpm

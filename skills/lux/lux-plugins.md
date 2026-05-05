@@ -333,7 +333,6 @@ These parameters control Snow consensus behavior for subnets:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: plugins, lpm, vm-registry, subnets, blobvm, spacesvm, subnet-evm
 **Prerequisites**: Lux node, LPM CLI

@@ -177,5 +177,4 @@ cd fhe && make
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem

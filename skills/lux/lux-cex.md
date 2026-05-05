@@ -483,7 +483,6 @@ CEX_KYT_VELOCITY_MAX=50
 
 ---
 
-**Last Updated**: 2026-03-22
 **Category**: Lux Ecosystem
 **Related**: cex, exchange, clob, matching-engine, surveillance, finra, reporting, fix, websocket, zap
 **Prerequisites**: Go 1.26.1, understanding of exchange mechanics and US securities regulation

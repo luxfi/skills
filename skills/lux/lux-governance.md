@@ -237,5 +237,4 @@ Multichain support: Ethereum, Optimism, Polygon, Base, Sepolia.
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem

@@ -126,7 +126,6 @@ cd sdk && pnpm test
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: wallet, web, vue, sdk, ledger, bitcoin, evm
 **Prerequisites**: Node.js v16+, pnpm

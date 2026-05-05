@@ -157,6 +157,5 @@ make build-docker     # Build Docker images
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: dao, governance, voting, treasury, identity, karma

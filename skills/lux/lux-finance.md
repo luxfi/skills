@@ -166,7 +166,6 @@ graphql + graphql-request  -- Subgraph queries
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: defi, finance, svelte, swap, liquidity, governance, cross-chain
 **Prerequisites**: Node.js v20+, pnpm

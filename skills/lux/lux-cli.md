@@ -383,7 +383,6 @@ The CLI uses `luxfi/log` for structured logging with configurable levels. Loggin
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: `lux/lux-node.md`, `lux/lux-netrunner.md`, `lux/lux-evm.md`, `lux/lux-precompile.md`
 **Prerequisites**: Go 1.26+, `luxd` binary for network operations

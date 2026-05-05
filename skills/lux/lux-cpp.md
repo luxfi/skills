@@ -221,7 +221,6 @@ embed_kernels=True  # Embed kernel sources in binary
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: c++, gpu, cuda, metal, webgpu, fhe, lattice, crypto, dex, high-performance
 **Prerequisites**: CMake 3.26+, Conan 2.x, C++20 compiler, GPU SDK (optional)

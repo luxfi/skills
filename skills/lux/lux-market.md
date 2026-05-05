@@ -195,5 +195,4 @@ EXPOSE 3000
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem

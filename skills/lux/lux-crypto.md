@@ -290,7 +290,6 @@ pubkey, _ := secp256k1.RecoverPubkey(hash, sig)
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: crypto, bls, secp256k1, post-quantum, mldsa, slhdsa, mlkem, kzg, ring-signatures, threshold, mpc, hpke
 **Prerequisites**: Cryptography fundamentals

@@ -271,7 +271,6 @@ npm run deploy-all custom   # Deploy to custom network (NODE_URL)
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: multisig, safe, account-abstraction, erc4337, eip7702, eip7951, secp256r1
 **Prerequisites**: Solidity, Hardhat, multisig concepts

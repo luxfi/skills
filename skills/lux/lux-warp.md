@@ -267,7 +267,6 @@ make ci      # Full CI pipeline
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: warp, cross-chain, messaging, BLS, signatures, relayer
 **Prerequisites**: Go 1.26+

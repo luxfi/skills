@@ -257,7 +257,6 @@ pnpm lint             # ESLint (next lint)
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: auth, login, oauth2, casdoor, iam, nextjs
 **Prerequisites**: Node.js 22, pnpm 9+, Docker (for deployment)

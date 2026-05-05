@@ -376,7 +376,6 @@ Optional interfaces precompiles can implement:
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: `lux/lux-evm.md`, `lux/lux-node.md`, `lux/lux-cli.md`
 **Prerequisites**: Go 1.26+, Solidity ABI encoding, understanding of EVM execution model

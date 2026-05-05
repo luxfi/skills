@@ -121,7 +121,6 @@ kubectl apply -f k8s/
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: pricing, coingecko, api-gateway, markets
 **Prerequisites**: Go 1.26+, CoinGecko API key
