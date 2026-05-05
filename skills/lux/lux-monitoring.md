@@ -87,11 +87,11 @@ Additional Grafana plugins installed: `grafana-piechart-panel`, `grafana-worldma
 |------|-----------|
 | `dex-performance.json` | Order matching latency (p50/p95/p99/p999), throughput, DPDK/RDMA metrics |
 
-### MorpheusVM Dashboard (`grafana/dashboards/morpheusvm/`)
+### HyperSDK VM Dashboard (`grafana/dashboards/hypersdkvm/`)
 
 | File | Dashboard |
 |------|-----------|
-| `performance.json` | MorpheusVM execution performance |
+| `performance.json` | HyperSDK VM execution performance |
 
 ## Grafana Provisioning
 

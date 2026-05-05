@@ -77,7 +77,7 @@ Lux SDK is the **official Go SDK** for building and managing Lux networks. It pr
 
 | Package | Import | Purpose |
 |---------|--------|---------|
-| `blockchain` | `.../sdk/blockchain` | `Builder` -- `CreateBlockchain()`, `Deploy()`. Types: `BlockchainType` (L1/L2/L3), `VMType` (evm/wasm/custom/tokenvm/morpheusvm), `Blockchain`, `Net`, `GenesisAccount`, `GenesisValidator` |
+| `blockchain` | `.../sdk/blockchain` | `Builder` -- `CreateBlockchain()`, `Deploy()`. Types: `BlockchainType` (L1/L2/L3), `VMType` (evm/wasm/custom/tokenvm/hypersdkvm), `Blockchain`, `Net`, `GenesisAccount`, `GenesisValidator` |
 | `chainconfig` | `.../sdk/chainconfig` | Chain config and genesis generation/parsing |
 | `configspec` | `.../sdk/configspec` | Configuration specification utilities |
 | `fees` | `.../sdk/fees` | Fee configuration |
@@ -257,7 +257,7 @@ import "github.com/luxfi/sdk/validatormanager"
 | WASM | `VMTypeWASM` | WebAssembly VM |
 | Custom | `VMTypeCustom` | User-provided VM |
 | TokenVM | `VMTypeTokenVM` | HyperSDK token VM |
-| MorpheusVM | `VMTypeMorpheusVM` | HyperSDK general VM |
+| HyperSDK general VM | `VMTypeHyperSDK` | HyperSDK general VM |
 
 ## Related Skills
 
