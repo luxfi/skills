@@ -45,7 +45,7 @@ All VMs implement the `chain.ChainVM` interface from `github.com/luxfi/vm/chain`
 | Quantum | Q | `quantumvm` | `quantumvm` | Linear | Account | Post-quantum crypto, Ringtail keys |
 | AI | A | `aivm` | `aivm` | Linear | Account | AI compute attestation, TEE verification |
 | Bridge | B | `bridgevm` | `bridgevm` | Linear | Account | Cross-chain bridge, MPC signing |
-| Threshold | T | `thresholdvm` | `thresholdvm` | Linear | Account | MPC-as-a-service (CMP/LSS protocols) |
+| MPC | M | `thresholdvm` (MPC mode) | `thresholdvm` | Linear | Account | MPC-as-a-service (CGGMP21/FROST/Ringtail-gen) — per LP-134, replaces legacy T-Chain MPC |
 | Zero-Knowledge | Z | `zkvm` | `zkvm` | Linear | UTXO | ZK proofs, FHE, confidential transfers |
 | Graph | G | `graphvm` | `graphvm` | Linear | Document | GraphQL/DGraph data layer |
 | DEX | D | `dexvm` | `dexvm` | Linear | Account | Orderbook, AMM, perpetuals, lending |
@@ -391,17 +391,24 @@ SignatureTypeMLDSA    = 3  // ML-DSA fallback
 - `github.com/luxfi/threshold/protocols/cmp/config` -- CMP protocol configuration
 - `github.com/luxfi/warp` -- Cross-chain Warp messaging
 
-### T-Chain (Threshold Chain)
+### M-Chain (MPC Chain) — formerly T-Chain MPC, per LP-134
 
 | Property | Value |
 |----------|-------|
-| VM | ThresholdVM (package `tvm`) |
+| VM | ThresholdVM in MPC mode (package `tvm`) |
 | VM ID | `thresholdvm` |
 | Package | `github.com/luxfi/node/vms/thresholdvm` |
 | Consensus | Linear (Quasar) |
 | Version | 1.0.0 |
 
-**Purpose**: The T-Chain provides MPC-as-a-service for all other Lux chains. Any chain can request threshold signature operations (keygen, signing, key rotation) through the T-Chain.
+**Purpose**: M-Chain provides MPC-as-a-service for all other Lux chains.
+Any chain can request threshold signature operations (keygen, signing,
+key rotation) through M-Chain. Per LP-134 (Lux Chain Topology), M-Chain
+is one of two operational chains carved out of the legacy T-Chain
+monolith — its sibling F-Chain runs the same `thresholdvm` substrate in
+FHE mode for TFHE keygen and encrypted-EVM compute. The legacy "T-Chain"
+name is retained only for `teleportvm` (LP-6332, cross-chain teleport
+message bus), which is unrelated.
 
 **Key Features**:
 - **Distributed key generation (DKG)** sessions
@@ -933,7 +940,7 @@ go test -tags=allvms ./vms/quantumvm/... -v
 | D-Chain slow blocks | Block interval too high | Adjust `blockInterval` in dexvm config |
 | A-Chain attestation failures | TEE not configured | Enable SGX/SEV-SNP/TDX or nvtrust on provider |
 | B-Chain bridge stuck | MPC threshold not met | Need t+1 MPC parties online |
-| T-Chain `ErrQuotaExceeded` | Per-chain quota exhausted | Increase quota or wait for daily reset |
+| M-Chain `ErrQuotaExceeded` | Per-chain quota exhausted | Increase quota or wait for daily reset |
 | Z-Chain proof verification timeout | Complex circuit | Increase `ProofVerificationTimeout` |
 | K-Chain parallel ops blocked | Max operations reached | Wait for current ops to complete (max 100) |
 | G-Chain query timeout | Deep nested query | Reduce `MaxQueryDepth` or simplify query |
@@ -953,7 +960,7 @@ go test -tags=allvms ./vms/quantumvm/... -v
 - `lux/lux-crypto.md` -- Cryptographic primitives (BLS, Ringtail, ML-DSA, ML-KEM)
 - `lux/lux-warp.md` -- LP-118 Warp cross-chain messaging
 - `lux/lux-bridge.md` -- B-Chain bridge operations
-- `lux/lux-threshold.md` -- T-Chain MPC threshold signing
+- `lux/lux-threshold.md` -- M-Chain MPC threshold signing (per LP-134; legacy T-Chain MPC)
 - `lux/lux-fhe.md` -- FHE support (Z-Chain)
 - `lux/lux-precompile.md` -- Precompile framework
 
