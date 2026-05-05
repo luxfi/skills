@@ -24,7 +24,7 @@ AI proofs generated on the network can mint tokens on any teleport-supported net
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` packages -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` packages -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. NEVER use EWOQ keys -- generate fresh keys
 3. Desktop requires Rust (for Tauri), Node.js 20+, pnpm
 
@@ -179,7 +179,6 @@ Health check at `http://localhost:9090/health`.
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: ai, inference, mining, desktop, tauri, openai-compatible
 **Prerequisites**: Go 1.26+, Node.js 20+, pnpm, Rust (for desktop)

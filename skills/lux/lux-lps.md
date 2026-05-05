@@ -512,15 +512,14 @@ Subjects describe knowledge. Chains describe deployment. An LP about FROST thres
 
 ## Important Conventions
 
-- All LP files use `github.com/luxfi/*` import paths -- never go-ethereum or ava-labs.
-- While some LPs adopt Avalanche ACP specifications, all Lux implementations use **LP naming** (LP-181, not ACP-181).
+- All LP files use `github.com/luxfi/*` import paths -- never upstream forks (no go-ethereum, no ava-labs).
+- All Lux LPs are Lux-native. Where a Lux LP shares a number with an external chain-improvement proposal, the Lux implementation uses **LP naming** (e.g. LP-181, not ACP-181).
 - Go package names follow `lpNNN` convention (e.g., `lp176`, `lp226`).
 - Implementation imports: `github.com/luxfi/node/vms/evm/lp176`.
 - LP content is licensed under CC0 (public domain). Specifications are BSD 3-Clause. Specialized chain implementations use the Lux Ecosystem License.
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: governance, standards, proposals, EIP, BIP, blockchain, lux-network
 **Prerequisites**: Basic blockchain concepts, Markdown formatting, GitHub workflow

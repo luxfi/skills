@@ -18,7 +18,7 @@
 
 - Go 1.26.1+
 - Module path: `github.com/luxfi/staking`
-- All dependencies use `github.com/luxfi/*` packages exclusively -- never `go-ethereum` or `ava-labs`
+- All dependencies use `github.com/luxfi/*` packages exclusively -- never upstream forks (no `go-ethereum`, no `ava-labs`)
 - Go package versions stay at v1.x.x (no v2+ bumps)
 - RSA keys must be 2048-bit or 4096-bit with public exponent 65537
 - ECDSA keys must use P-256 curve

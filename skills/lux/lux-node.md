@@ -72,7 +72,7 @@ Lux Node (`luxd`) is the core validator node for the Lux Network -- a multi-chai
 
 ## Hard requirements
 
-1. **ALWAYS** use `github.com/luxfi/*` packages -- **NEVER** `go-ethereum` or `ava-labs`
+1. **ALWAYS** use `github.com/luxfi/*` packages -- **NEVER** upstream forks (no `go-ethereum`, no `ava-labs`)
 2. **NEVER** use EWOQ keys -- generate fresh keys for every deployment
 3. **NEVER** `pkill luxd` -- use `lux cli` or send SIGINT/SIGTERM for graceful shutdown
 4. **NEVER** bump Go packages above v1.x.x (except `luxfi/lattice/v7` and `luxfi/zapdb/v4` which are already >v1)
@@ -285,9 +285,9 @@ The Lux Network supports 14 built-in chain types across 3 tiers.
 
 | Chain | Letter | VM | Consensus | Purpose |
 |-------|--------|----|-----------|---------|
-| **P-Chain** | P | platformvm | Linear (Snowman) | Validator management, staking, subnet/L1 creation |
-| **X-Chain** | X | exchangevm | DAG (Avalanche) | UTXO-based asset creation and transfers |
-| **C-Chain** | C | EVM plugin | Linear (Snowman) | EVM-compatible smart contracts (ChainID 96369) |
+| **P-Chain** | P | platformvm | Linear (Nova) | Validator management, staking, subnet/L1 creation |
+| **X-Chain** | X | exchangevm | DAG (Nebula) | UTXO-based asset creation and transfers |
+| **C-Chain** | C | EVM plugin | Linear (Nova) | EVM-compatible smart contracts (ChainID 96369) |
 
 #### Extended Chains (allvms build tag)
 
@@ -316,9 +316,9 @@ Lux Node implements a multi-consensus architecture:
 
 #### Consensus Engines
 
-1. **Linear (Snowman)**: For linear chains (P-Chain, C-Chain, Q-Chain, etc.). Blocks form a single chain. Uses `ChainVM` interface. Wrapped by **ProposerVM (Linear++)** for congestion control via soft leader election.
+1. **Linear (Nova)**: For linear chains (P-Chain, C-Chain, Q-Chain, etc.). Blocks form a single chain. Uses `ChainVM` interface. Wrapped by **ProposerVM (Nova-fast)** for congestion control via soft leader election. Driven by Ray (linear-chain finality driver).
 
-2. **DAG (Avalanche/Lux)**: For directed acyclic graph chains (X-Chain). Vertices can have multiple parents. Uses `DAGVertex` interface. Enables higher throughput via parallel transaction processing.
+2. **DAG (Nebula)**: For directed acyclic graph chains (X-Chain). Vertices can have multiple parents. Uses `DAGVertex` interface. Enables higher throughput via parallel transaction processing. Driven by Field (DAG finality driver) over Prism geometry, with Horizon reachability and Flare 2f+1 cert/skip.
 
 3. **Quasar**: The hybrid quantum-safe finality engine. Runs on top of linear consensus. Produces **hybrid finality proofs** requiring both:
    - **BLS Path**: Aggregate BLS signatures from 2/3+ validator weight (96-byte proof, fast)
@@ -463,7 +463,6 @@ Production validators run on the `lux-k8s` DOKS cluster (`do-sfo3-lux-k8s`). K8s
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: node, validator, blockchain, luxd, consensus, quasar, post-quantum, multi-chain
 **Prerequisites**: Go 1.26.1+, gcc/g++, 8 vCPU / 16 GiB minimum

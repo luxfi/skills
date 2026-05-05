@@ -30,8 +30,8 @@ All VMs implement the `chain.ChainVM` interface from `github.com/luxfi/vm/chain`
 
 ### Hard Requirements
 
-1. **ALWAYS** use `github.com/luxfi/*` packages -- **NEVER** `go-ethereum` or `ava-labs`
-2. Consensus is **Quasar** -- NEVER refer to it as Snow, Snowball, or Avalanche consensus
+1. **ALWAYS** use `github.com/luxfi/*` packages -- **NEVER** upstream forks (no `go-ethereum`, no `ava-labs`)
+2. Consensus is **Quasar** -- always use Lux primitives (Photon / Wave / Focus / Prism / Horizon / Flare / Ray / Field / Nova / Nebula / Pulsar)
 3. **NEVER** bump Go packages above v1.x.x (except `luxfi/lattice/v7` and `luxfi/zapdb/v4`)
 4. Build with `-tags=allvms` to enable extended chains beyond P/X/C
 
@@ -168,7 +168,7 @@ The `ChainRegistry` in `github.com/luxfi/constants@v1.4.4/chain_registry.go` pro
 | VM | ExchangeVM |
 | VM ID | `xvm` (aliases: `ExchangeVMID`, `XVMID`) |
 | Package | `github.com/luxfi/node/vms/exchangevm` |
-| Consensus | DAG (Lux/Avalanche) |
+| Consensus | DAG (Nebula) |
 | Model | UTXO-based |
 | Registration | Direct factory in `node.go` |
 
@@ -959,7 +959,6 @@ go test -tags=allvms ./vms/quantumvm/... -v
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: chains, multi-chain, virtual-machines, consensus, quasar, evm, platform, exchange
 **Prerequisites**: Go 1.26.1, understanding of blockchain consensus, luxd node

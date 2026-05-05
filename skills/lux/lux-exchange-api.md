@@ -17,7 +17,7 @@ Lux Exchange API (`github.com/luxfi/exchange-api`) is a **TypeScript Express ser
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` package paths -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` package paths -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. Native chain handling is determined by `NATIVE_CHAINS` set: `LUX` and `ZOO`
 3. Stablecoins (USDT, USDC, LUSD, DAI, BUSD) are force-priced to $1.00
 4. Prices and volumes exceeding 1e12 are capped to 0 (subgraph overflow artifacts)
@@ -187,7 +187,6 @@ exchange-sdk/
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: exchange, dex, graphql, uniswap, blockscout, subgraph, tokens
 **Prerequisites**: TypeScript, Node.js 22, Express

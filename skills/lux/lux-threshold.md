@@ -20,7 +20,7 @@ Lux Threshold is a **production-ready threshold signature library** supporting 2
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` packages -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` packages -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. NEVER use JSON for FROST/LSS configs -- crypto types lack JSON marshalers, use CBOR
 3. Use constant-time arithmetic via `cronokirby/saferith` -- no timing side-channels
 
@@ -242,7 +242,6 @@ go test -bench=. ./...
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: threshold, signing, cryptography, CGGMP21, FROST, post-quantum
 **Prerequisites**: Go 1.26+

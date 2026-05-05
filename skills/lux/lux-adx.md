@@ -21,7 +21,7 @@ ADX is a **high-performance Connected TV (CTV) ad exchange** designed for 100M+ 
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` packages -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` packages -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. NEVER use EWOQ keys -- generate fresh keys
 3. FoundationDB 7.3.27+ required for storage backend
 
@@ -246,7 +246,6 @@ Health check at `http://localhost:8080/health`. Requires FoundationDB client lib
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: adx, ctv, vast, openrtb, ad-exchange, privacy, zk-proofs, foundationdb, home-miner
 **Prerequisites**: Go 1.26+, FoundationDB 7.3.27+

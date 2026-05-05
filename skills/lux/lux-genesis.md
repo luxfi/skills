@@ -19,7 +19,7 @@
 
 - Go 1.26.1+
 - Module path: `github.com/luxfi/genesis`
-- All dependencies use `github.com/luxfi/*` packages exclusively -- never `go-ethereum` or `ava-labs`
+- All dependencies use `github.com/luxfi/*` packages exclusively -- never upstream forks (no `go-ethereum`, no `ava-labs`)
 - Go package versions stay at v1.x.x (no v2+ bumps)
 - Never expose or commit private keys, mnemonics, or EWOQ keys
 - Treasury address `0x9011E888251AB053B7bD1cdB598Db4f9DEd94714` is canonical across all networks

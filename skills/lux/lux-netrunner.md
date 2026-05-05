@@ -90,7 +90,7 @@ Not just a test runner -- Netrunner orchestrates full L1/L2/L3 stacks with cross
 ```protobuf
 message StartRequest {
   string network_name = 1;    // "mainnet", "testnet", "devnet", "custom"
-  string node_type = 2;       // "luxd", "avalanchego", "geth", "op-node", "custom"
+  string node_type = 2;       // "luxd", "geth", "op-node", "custom"
   string exec_path = 4;
   optional uint32 num_nodes = 5;
   optional string global_node_config = 7;
@@ -228,7 +228,7 @@ networks:
     chain_id: 96369
 ```
 
-Predefined stacks: `lux-local`, `lux-mainnet-5node`, `lux-testnet-5node`, `lux-mainnet-alt`, `lux-l1-l2-local`, `lux-avalanche-bridge`.
+Predefined stacks: `lux-local`, `lux-mainnet-5node`, `lux-testnet-5node`, `lux-mainnet-alt`, `lux-l1-l2-local`, `lux-bridge`.
 
 Bridge config supports types: `awm`, `ibc`, `ccip`.
 
@@ -364,7 +364,6 @@ netrunner/
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: `lux/lux-cli.md`, `lux/lux-node.md`, `lux/lux-evm.md`
 **Prerequisites**: Go 1.26+, `luxd` binary, gRPC tooling (grpcurl or client SDK)

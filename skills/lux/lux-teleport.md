@@ -21,7 +21,7 @@ Lux Teleport is a **cross-chain bridge protocol** using Multi-Party Compute (MPC
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` references -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` references -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. Use EIP-712 typed data signing for all bridge signatures
 3. Derive all claim fields from on-chain logs -- NEVER from request parameters
 4. Use `spawn()` for MPC process invocation -- NEVER `exec()` (shell injection risk)
@@ -244,7 +244,6 @@ BLS12-381 (EIP-2537) available via Prague upgrade for Quasar consensus proofs.
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: bridge, cross-chain, mpc, zero-knowledge, privacy
 **Prerequisites**: Node.js 18+, pnpm 8+, MongoDB, Rust (for multi-party-ecdsa)

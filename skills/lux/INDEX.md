@@ -8,10 +8,10 @@ Lux Network is a multi-chain blockchain with Quasar post-quantum consensus, 14 c
 
 ### Key Rules
 
-- **ALWAYS use luxfi packages** — NEVER go-ethereum or ava-labs
+- **ALWAYS use luxfi packages** — NEVER upstream forks (no go-ethereum, no ava-labs)
 - **NEVER use EWOQ keys** — generate fresh keys
 - **NEVER pkill luxd** — use `lux cli` properly
-- **Consensus is Quasar** — NOT Snow, Snowball, or Avalanche BFT
+- **Consensus is Quasar** — Photon committee selection + Wave threshold voting + Focus beta counter (NOT any external BFT family)
 
 ## Skill Catalog
 
@@ -355,6 +355,5 @@ What do you need?
 
 ---
 
-**Last Updated**: 2026-03-24
 **Total Skills**: 80
 **Gateway**: `discover-lux/SKILL.md`

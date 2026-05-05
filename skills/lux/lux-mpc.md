@@ -20,7 +20,7 @@ Lux MPC (`mpcd`) is a **distributed threshold signing service** for securely gen
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` packages -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` packages -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. NEVER store passwords in plaintext -- ZapDB uses ChaCha20-Poly1305 encryption
 3. ALWAYS use CBOR serialization for FROST/LSS configs -- JSON corrupts crypto types
 
@@ -295,7 +295,6 @@ make test-coverage
 
 ---
 
-**Last Updated**: 2026-03-24
 **Category**: Lux Ecosystem
 **Related**: mpc, threshold, signing, custody, wallet
 **Prerequisites**: Go 1.26+

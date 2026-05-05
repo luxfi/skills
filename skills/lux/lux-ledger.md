@@ -17,7 +17,7 @@ Lux Ledger (`github.com/luxfi/ledger`) is a **Go client library** for interactin
 
 ## Hard requirements
 
-1. ALWAYS use `github.com/luxfi/*` packages -- NEVER `go-ethereum` or `ava-labs`
+1. ALWAYS use `github.com/luxfi/*` packages -- NEVER upstream forks (no `go-ethereum`, no `ava-labs`)
 2. NEVER bump Go package versions above v1.x.x
 3. Tests require a **physical Ledger device** with the Lux app installed and unlocked
 4. HRP (human-readable part) must be <= 83 characters
@@ -196,7 +196,6 @@ Set `LEDGER_LOG_LEVEL` environment variable: `debug`, `info` (default), `warn`, 
 
 ---
 
-**Last Updated**: 2026-03-13
 **Category**: Lux Ecosystem
 **Related**: ledger, hardware-wallet, signing, hid, apdu, bip32, bip44
 **Prerequisites**: Go 1.26+, physical Ledger device for integration tests
