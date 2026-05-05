@@ -26,7 +26,7 @@ skills/
 ### Core Blockchain
 - lux-node.md — Validator node (Go)
 - lux-evm.md — EVM execution engine
-- lux-consensus.md — Snow consensus family
+- lux-consensus.md — Quasar consensus family (Photon / Wave / Focus / Prism / Horizon / Flare / Ray / Field / Nova / Nebula)
 
 ### Cryptography
 - lux-crypto.md — Primitives and hashing
