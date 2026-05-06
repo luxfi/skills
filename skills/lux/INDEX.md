@@ -27,7 +27,7 @@ Unified Go EVM engine. `github.com/luxfi/evm` v0.8.35+. Coreth merged in. DEX pr
 Legacy C-Chain EVM (merged into lux-evm). `github.com/luxfi/coreth`.
 
 **Lux Quasar** (`lux-consensus.md`)
-Post-quantum consensus engine with Photonic Selection. 2-round finality. Dual BLS+Ringtail threshold certificates. CBD sampler (FIPS 203), SIMD NTT (AVX2), HMAC-SHA256 keyed certificates. Security hardened 2026-03-24.
+Post-quantum consensus engine with Photonic Selection. 2-round finality. Dual BLS+Pulsar threshold certificates. CBD sampler (FIPS 203), SIMD NTT (AVX2), HMAC-SHA256 keyed certificates. Security hardened 2026-03-24.
 
 **Lux DEX** (`lux-dex.md`)
 CLOB order matching engine. 434M+ orders/sec (GPU). Go + C++ + Rust + MLX. FIX protocol.
@@ -73,7 +73,7 @@ Custom EVM precompiles, SessionVM, ERC20 Go implementation.
 **Lux MPC** (`lux-mpc.md`)
 Distributed threshold signing service (`mpcd`). 5 protocols (CGGMP21, FROST, LSS, BLS, SR25519). 7+ chain families (BTC, ETH, SOL, TON, XRP, DOT, KSM). Consensus-embedded ZAP transport. OrgID per-tenant isolation. 3-of-5 topology. Safe multisig integration. ZapDB storage, JWT/KMS auth.
 
-**Lux Ringtail** (`lux-ringtail.md`)
+**Lux Pulsar** (`lux-ringtail.md`)
 Post-quantum signature scheme for Lux consensus.
 
 **Lux FHE Coprocessor** (`lux-fhe-coprocessor.md`)

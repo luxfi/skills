@@ -274,7 +274,7 @@ LPs are organized by number range corresponding to Lux Network's 8 chains plus c
 | 5014 | CGG21 Threshold ECDSA |
 | 5103 | MPC-LSS Linear Secret Sharing |
 | 5104 | FROST Threshold Signatures |
-| 5321-5325 | Precompiles (FROST, CGGMP21, LSS-MPC, Ringtail, KMS/HSM) |
+| 5321-5325 | Precompiles (FROST, CGGMP21, LSS-MPC, Pulsar, KMS/HSM) |
 | 5330-5341 | ThresholdVM, FHE Guide, Signer Rotation, Per-Asset Keys, K-Chain, Account Abstraction, Crypto Library, TypeScript SDK |
 | 5350 | MPC Node Cluster |
 | 5626-5627 | LRC-4626 Tokenized Vault + Multi-Vault Extensions |
@@ -498,7 +498,7 @@ LPs and HIPs (Hanzo Improvement Proposals) are separate governance systems for d
 | Category | Scope |
 |----------|-------|
 | Consensus | Photon, Flare, Quasar, finality protocols |
-| Threshold Crypto | FROST, CGGMP, Ringtail, distributed signing |
+| Threshold Crypto | FROST, CGGMP, Pulsar, distributed signing |
 | MPC | Secure computation (not signing) |
 | PQC | Post-quantum: ML-KEM, ML-DSA, SLH-DSA |
 | Chains | P, C, X, T, Q, Z, A, B chain specifications |

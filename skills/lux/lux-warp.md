@@ -1,11 +1,11 @@
-# Lux Warp - Cross-Chain Messaging Protocol V2
+# Lux Warp 2.0 - Cross-Chain Messaging Protocol
 
 **Category**: Lux Ecosystem
-**Related Skills**: `lux/lux-node.md`, `lux/lux-crypto.md`, `lux/lux-bridge.md`
+**Related Skills**: `lux/lux-node.md`, `lux/lux-crypto.md`, `lux/lux-bridge.md`, `lux/lux-teleport.md`
 
 ## Overview
 
-Lux Warp (`github.com/luxfi/warp`) is the **cross-chain messaging (XCM) protocol** for Lux Network. It defines a message format and cryptographic standard for secure inter-blockchain communication using BLS signature aggregation. V2 adds post-quantum safety via ringtail validation and optional private messaging via Z-chain FHE.
+Lux Warp (`github.com/luxfi/warp`) is the **cross-chain messaging (XCM) protocol** for Lux Network. **Lux Warp 2.0** is the canonical hybrid envelope: it carries the Warp 1.x message intact (the **Beam** lane: BLS12-381 aggregate + signer bitmap) alongside two post-quantum lanes — a per-validator **ML-DSA cert set** (FIPS 204) and a **Pulse** produced by the source chain's Pulsar threshold kernel (Lux's variant with DKG2 + Pulsar-SHA3, see LP-073). All three lanes are bound to a common source-chain transcript, so destination chains can verify under any combination of classical / PQ assumptions. Warp 2.0 is the envelope path used by Lux's Quasar consensus integration (LP-110); Lux Teleport (LP-6332) is the asset-transfer protocol layered on top. Optional private messaging via Z-Chain FHE (Warp Private, LP-021v2 forthcoming).
 
 ## Quick reference
 

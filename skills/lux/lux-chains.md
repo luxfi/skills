@@ -15,10 +15,10 @@ All VMs implement the `chain.ChainVM` interface from `github.com/luxfi/vm/chain`
 
 - **Language**: Go 1.26.1
 - **Module**: `github.com/luxfi/node`
-- **Consensus**: Quasar hybrid finality (BLS + Ringtail post-quantum threshold signatures)
+- **Consensus**: Quasar hybrid finality (BLS + Pulsar post-quantum threshold signatures)
 - **VM Interface**: `github.com/luxfi/vm` v1.0.39
 - **Consensus Package**: `github.com/luxfi/consensus` v1.22.69
-- **Crypto**: `github.com/luxfi/crypto` v1.17.42 (BLS, ML-DSA, ML-KEM, secp256k1, Ringtail)
+- **Crypto**: `github.com/luxfi/crypto` v1.17.42 (BLS, ML-DSA, ML-KEM, secp256k1, Pulsar)
 
 ### When to Use
 
@@ -42,7 +42,7 @@ All VMs implement the `chain.ChainVM` interface from `github.com/luxfi/vm/chain`
 | Platform | P | `platformvm` | `platformvm` | Linear | Account | Validators, staking, subnet/L1 creation |
 | Exchange | X | `exchangevm` | `xvm` | DAG | UTXO | Asset creation and transfers |
 | Contract | C | EVM plugin | `evm` | Linear | Account | EVM smart contracts |
-| Quantum | Q | `quantumvm` | `quantumvm` | Linear | Account | Post-quantum crypto, Ringtail keys |
+| Quantum | Q | `quantumvm` | `quantumvm` | Linear | Account | Post-quantum crypto, Pulsar keys |
 | AI | A | `aivm` | `aivm` | Linear | Account | AI compute attestation, TEE verification |
 | Bridge | B | `bridgevm` | `bridgevm` | Linear | Account | Cross-chain bridge, MPC signing |
 | MPC | M | `thresholdvm` (MPC mode) | `thresholdvm` | Linear | Account | MPC-as-a-service (CGGMP21/FROST/Ringtail-gen) — per LP-134, replaces legacy T-Chain MPC |
@@ -270,15 +270,15 @@ These chains require building `luxd` with `-tags=allvms`. Each implements `chain
 | VM | QuantumVM (package `qvm`) |
 | VM ID | `quantumvm` |
 | Package | `github.com/luxfi/node/vms/quantumvm` |
-| Consensus | Linear + Quasar PQ-BFT (hybrid BLS + Ringtail) |
+| Consensus | Linear + Quasar PQ-BFT (hybrid BLS + Pulsar) |
 | Version | 1.0.0 |
 
-**Purpose**: The Q-Chain is the post-quantum cryptography chain. It runs the Quasar consensus engine as a first-class component, producing quantum-safe finality certificates using dual BLS + Ringtail threshold signatures. It serves as the quantum-safe anchor for the entire Lux network.
+**Purpose**: The Q-Chain is the post-quantum cryptography chain. It runs the Quasar consensus engine as a first-class component, producing quantum-safe finality certificates using dual BLS + Pulsar threshold signatures. It serves as the quantum-safe anchor for the entire Lux network.
 
 **Key Features**:
-- **Quasar hybrid finality engine** (BLS + Ringtail in parallel)
+- **Quasar hybrid finality engine** (BLS + Pulsar in parallel)
 - Quantum stamps (post-quantum finality proofs)
-- Ringtail key generation and management (Ring-LWE based)
+- Pulsar key generation and management (Ring-LWE based)
 - ML-DSA quantum signatures (NIST FIPS 204)
 - Post-quantum transaction signing
 - Merkle root anchoring from other chains
@@ -291,20 +291,20 @@ The Quasar engine wraps `github.com/luxfi/consensus/protocol/quasar` and produce
 ```
 BlockSigs {
     BLS      *quasar.BLSSignature      // Classical, fast (96 bytes)
-    Ringtail *quasar.RingtailSignature  // Post-quantum, Ring-LWE threshold
+    Pulsar *quasar.RingtailSignature  // Post-quantum, Ring-LWE threshold
 }
 ```
 
 Blocks are NOT considered produced without BOTH thresholds being met:
 - **BLS Path**: Aggregate BLS signatures from 2/3+ validator weight (fast)
-- **Ringtail Path**: Post-quantum threshold signatures (t-of-n, 2-round protocol)
+- **Pulsar Path**: Post-quantum threshold signatures (t-of-n, 2-round protocol)
 - Both paths execute **in parallel** -- either can complete first
 
 **Signature Types**:
 ```go
 SignatureTypeBLS      = 0  // Classical BLS aggregate
 SignatureTypeRingtail = 1  // Post-quantum threshold
-SignatureTypeQuasar   = 2  // Hybrid BLS + Ringtail
+SignatureTypeQuasar   = 2  // Hybrid BLS + Pulsar
 SignatureTypeMLDSA    = 3  // ML-DSA fallback
 ```
 
@@ -314,7 +314,7 @@ SignatureTypeMLDSA    = 3  // ML-DSA fallback
 
 **Configuration**:
 - `QuantumAlgorithmVersion` -- Algorithm version
-- `RingtailKeySize` -- Ringtail key size
+- `RingtailKeySize` -- Pulsar key size
 - `QuantumStampWindow` -- Stamp validity window
 - `QuantumSigCacheSize` -- Signature cache size
 
@@ -877,7 +877,7 @@ All chains use the Quasar consensus framework, but through different engine type
 |--------|------|---------|-------------|
 | **Linear** | Block-based chain | P, C, Q, A, B, T, Z, G, D, K, O, R, I | Blocks form a single chain. Wrapped by ProposerVM (LP-181). |
 | **DAG** | Vertex-based graph | X | Vertices can have multiple parents. Higher throughput via parallel processing. |
-| **Quasar** | Hybrid BLS + Ringtail | Q (first-class), all (via luxd) | Dual threshold signatures for quantum-safe finality. |
+| **Quasar** | Hybrid BLS + Pulsar | Q (first-class), all (via luxd) | Dual threshold signatures for quantum-safe finality. |
 | **ZAP** | Agent consensus bridge | (bridge layer) | W3C DID-based validator identity, agentic consensus. |
 
 ### Quasar Finality Flow
@@ -888,7 +888,7 @@ Validator proposes block
   -> Cast votes (Chits/Vote messages)
   -> Consensus engine collects votes, runs polls
   -> BLS threshold met (2/3+ validator weight)     [parallel]
-  -> Ringtail threshold met (t-of-n post-quantum)  [parallel]
+  -> Pulsar threshold met (t-of-n post-quantum)  [parallel]
   -> Block accepted (quantum finality achieved)
 ```
 
@@ -936,7 +936,7 @@ go test -tags=allvms ./vms/quantumvm/... -v
 | Problem | Cause | Fix |
 |---------|-------|-----|
 | Extended chains not available | Missing build tag | Build with `-tags=allvms` |
-| Q-Chain blocks not finalizing | Ringtail threshold not met | Need t+1 validators with Ringtail keys |
+| Q-Chain blocks not finalizing | Pulsar threshold not met | Need t+1 validators with Pulsar keys |
 | D-Chain slow blocks | Block interval too high | Adjust `blockInterval` in dexvm config |
 | A-Chain attestation failures | TEE not configured | Enable SGX/SEV-SNP/TDX or nvtrust on provider |
 | B-Chain bridge stuck | MPC threshold not met | Need t+1 MPC parties online |
@@ -957,7 +957,7 @@ go test -tags=allvms ./vms/quantumvm/... -v
 - `lux/lux-consensus.md` -- Quasar consensus engine deep dive
 - `lux/lux-vm.md` -- VM interface and plugin development
 - `lux/lux-dex.md` -- D-Chain DEX engine (orderbook, AMM, perpetuals)
-- `lux/lux-crypto.md` -- Cryptographic primitives (BLS, Ringtail, ML-DSA, ML-KEM)
+- `lux/lux-crypto.md` -- Cryptographic primitives (BLS, Pulsar, ML-DSA, ML-KEM)
 - `lux/lux-warp.md` -- LP-118 Warp cross-chain messaging
 - `lux/lux-bridge.md` -- B-Chain bridge operations
 - `lux/lux-threshold.md` -- M-Chain MPC threshold signing (per LP-134; legacy T-Chain MPC)

@@ -75,7 +75,7 @@ lux
     send         C-Chain send convenience
 
   key            Manage cryptographic keys
-    create       Generate new key set from mnemonic (EC, BLS, Ringtail, ML-DSA)
+    create       Generate new key set from mnemonic (EC, BLS, Pulsar, ML-DSA)
     list         List all key sets
     show         Show key set details and addresses
     delete       Delete a key set
@@ -210,7 +210,7 @@ Keys are stored in `~/.lux/keys/<name>/` with subdirectories per type:
 |------|-----------|---------|
 | EC | secp256k1 | Transaction signing, Ethereum compatibility |
 | BLS | BLS12-381 | Consensus participation, aggregated signatures |
-| Ringtail | Lattice-based ring | Ring signatures for privacy |
+| Pulsar | Lattice-based ring | Ring signatures for privacy |
 | ML-DSA | NIST Level 3 | Post-quantum digital signatures |
 
 All key types derived from a single BIP39 mnemonic using HKDF. Keys can be locked/unlocked for session management. Backend system supports multiple storage providers (keychain, file, K-Chain distributed).
@@ -302,7 +302,7 @@ Uses canonical Helm chart at `~/work/lux/devops/charts/lux/` (configurable via `
 lux gpu status
 ```
 
-Reports availability for: NTT operations (Ringtail consensus), FHE operations (ThresholdVM), lattice cryptography. Builds with CGO for GPU support (`cgo_enabled.go` / `cgo_disabled.go`).
+Reports availability for: NTT operations (Pulsar consensus), FHE operations (ThresholdVM), lattice cryptography. Builds with CGO for GPU support (`cgo_enabled.go` / `cgo_disabled.go`).
 
 ## Configuration
 

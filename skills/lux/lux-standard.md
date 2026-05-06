@@ -382,10 +382,10 @@ EVM precompile interfaces for quantum-resistant signatures (`contracts/precompil
 | Precompile | Interface | Description |
 |------------|-----------|-------------|
 | FROST | `IFROST.sol` | Schnorr threshold signatures |
-| ML-DSA | `IMLDSA.sol` | FIPS 204 (Dilithium) signatures |
+| ML-DSA | `IMLDSA.sol` | FIPS 204 (ML-DSA) signatures |
 | ML-KEM | `IMLKEM.sol` | Key encapsulation mechanism |
-| SLH-DSA | `ISLHDSA.sol` | FIPS 205 (SPHINCS+) signatures |
-| Ringtail | `IRingtailThreshold.sol` | Lattice-based threshold |
+| SLH-DSA | `ISLHDSA.sol` | FIPS 205 (SLH-DSA (FIPS 205, formerly SPHINCS+)) signatures |
+| Pulsar | `IRingtailThreshold.sol` | Lattice-based threshold |
 | CGGMP21 | `ICGGMP21.sol` | ECDSA threshold (MPC) |
 | BLS | `IBLS.sol` | BLS aggregate signatures |
 | Warp | `IWarp.sol` | Cross-chain Warp messaging |
@@ -416,8 +416,8 @@ Post-quantum-ready multisig wallets (`contracts/safe/`):
 | `SafeFactory` | Safe deployment factory |
 | `SafeFROSTSigner` | FROST threshold signer module |
 | `SafeFROSTCoSigner` | FROST co-signing module |
-| `SafeMLDSASigner` | ML-DSA (Dilithium) signer |
-| `SafeRingtailSigner` | Ringtail lattice signer |
+| `SafeMLDSASigner` | ML-DSA signer |
+| `SafeRingtailSigner` | Pulsar lattice signer |
 | `SafeLSSSigner` | LSS-MPC signer |
 | `SafeCGGMP21Signer` | CGGMP21 ECDSA threshold |
 | `SafeThresholdLamportModule` | Lamport one-time signer |

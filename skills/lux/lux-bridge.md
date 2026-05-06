@@ -277,7 +277,7 @@ github.com/luxfi/bridge/
           mpc-wallet.ts    MPC wallet creation (keygen) and deposit checks
           mpc-signer.ts    Ed25519 request signing (initiator key)
           swaps.ts         Swap lifecycle management
-          teleport-processor.ts   Background processor for Lux Teleporter swaps
+          teleport-processor.ts   Background processor for Lux Teleport (LP-6332) swaps
         services/
           mpc-service.ts   MPC network client (NATS, Consul, key shares)
       prisma/
@@ -379,8 +379,8 @@ Network policies isolate MPC nodes: only `bridge-server` pods can reach MPC HTTP
 
 - `lux/lux-mpc.md` -- MPC node binary, TSS protocols, key management
 - `lux/lux-threshold.md` -- T-Chain ThresholdVM SDK details
-- `lux/lux-warp.md` -- Warp Messenger for cross-subnet bridging
-- `lux/lux-teleport.md` -- Lux Teleporter for subnet-to-subnet transfers
+- `lux/lux-warp.md` -- Lux Warp 2.0 (Beam + ML-DSA + Pulse) for cross-chain messaging
+- `lux/lux-teleport.md` -- Lux Teleport (LP-6332) for chain-to-chain transfers on Warp 2.0
 - `lux/lux-evm.md` -- C-Chain where bridge contracts execute
 - `lux/lux-wallet.md` -- Wallet integration for bridge users
 - `lux/lux-node.md` -- Validator nodes that bridge connects to
