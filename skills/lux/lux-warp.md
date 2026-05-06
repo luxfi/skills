@@ -178,7 +178,7 @@ lux warp relay
 
 ## V2 Improvements over V1
 
-1. **Post-Quantum Safety**: Random ringtail validation resists quantum attacks
+1. **Post-Quantum Safety**: ML-DSA cert set + Pulsar Pulse (Lux's Ringtail variant, DKG2 + Pulsar-SHA3) resist quantum attacks
 2. **Enhanced Privacy**: Ring signatures for validator anonymity
 3. **Private Messaging**: Z-chain FHE for private cross-chain messages (optional)
 4. **Dynamic Validator Selection**: Random subset validation

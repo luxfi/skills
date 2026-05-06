@@ -1,11 +1,11 @@
-# Lux Teleport - Zero-Knowledge MPC Cross-Chain Bridge
+# Lux Teleport (LP-6332) - Zero-Knowledge MPC Cross-Chain Bridge
 
 **Category**: Lux Ecosystem
-**Related Skills**: `lux/lux-mpc.md`, `lux/lux-threshold.md`, `lux/lux-bridge.md`
+**Related Skills**: `lux/lux-mpc.md`, `lux/lux-threshold.md`, `lux/lux-bridge.md`, `lux/lux-warp.md`
 
 ## Overview
 
-Lux Teleport is a **cross-chain bridge protocol** using Multi-Party Compute (MPC) nodes for decentralized oracle operations and threshold signature-based asset transfers. It features zero-knowledge privacy -- signers do not know details about assets being teleported. Built as a pnpm monorepo with Solidity contracts, TypeScript API/MPC services, and a frontend app.
+**Lux Teleport** (LP-6332) is the canonical **cross-chain bridge protocol** layered on top of **Lux Warp 2.0** (Beam BLS aggregate + ML-DSA cert set + Pulsar Pulse, see `github.com/luxfi/warp`). It uses Multi-Party Compute (MPC) nodes for decentralized oracle operations and threshold signature-based asset transfers, with zero-knowledge privacy -- signers do not know details about assets being teleported. Implemented by `teleportvm` on B-Chain (LP-6331). Distinct from the upstream Avalabs "Teleporter": Lux Teleport rides on Quasar consensus (LP-110) and the `luxfi/warp` envelope. Built as a pnpm monorepo with Solidity contracts, TypeScript API/MPC services, and a frontend app.
 
 ## Quick reference
 
