@@ -302,13 +302,13 @@ Required fields checklist:
 1. **Create subnet on P-Chain**: Deploy via `lux subnet create` CLI command
 2. **Note Subnet ID**: Base58-encoded ID from the P-Chain transaction
 3. **List VM dependencies**: Which VMs the subnet uses (by alias)
-4. **Configure consensus**: Set Snow consensus parameters appropriate for your use case
+4. **Configure consensus**: Set Quasar consensus parameters appropriate for your use case
 5. **Write YAML**: Create `subnets/<alias>.yaml` following the format above
 6. **Submit PR**: Open a pull request
 
 ## Consensus Parameter Reference
 
-These parameters control Snow consensus behavior for subnets:
+These parameters control Quasar consensus behavior for subnets:
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
