@@ -26,7 +26,7 @@ plugins-core/
   vms/                   -- VM definitions (one YAML per VM)
     blobvm.yaml              Content-addressable KV store VM
     spacesvm.yaml            Hierarchical storage VM
-    subnet-evm.yaml          Subnet EVM (Solidity smart contracts)
+    evm.yaml          Subnet EVM (Solidity smart contracts)
   subnets/               -- Subnet definitions (one YAML per subnet)
     spaces.yaml              Spaces Subnet Demo (SpacesVM)
     wagmi.yaml               Zoo EVM Demo (high-throughput testbed)
@@ -75,14 +75,14 @@ SpacesVM provides authenticated, hierarchical key-value storage using any EIP-71
 
 | Field | Value |
 |-------|-------|
-| Alias | `subnet-evm` |
+| Alias | `evm` |
 | VM ID | `mgj786NP7uDwBCcq6YwThhaN8FLyybkCa4zBWTQbNgmK6k9A6` |
 | Version | 0.2.7 |
-| Homepage | `https://github.com/luxdefi/subnet-evm` |
+| Homepage | `https://github.com/luxdefi/evm` |
 | Description | Subnet EVM -- simplified Coreth VM for Subnet Contract Chains with full Ethereum Virtual Machine and Solidity smart contract support |
 | Install Script | `scripts/build.sh build/mgj786NP7uDwBCcq6YwThhaN8FLyybkCa4zBWTQbNgmK6k9A6` |
 | Binary Path | `build/mgj786NP7uDwBCcq6YwThhaN8FLyybkCa4zBWTQbNgmK6k9A6` |
-| Release URL | `https://github.com/luxdefi/subnet-evm/archive/refs/tags/v0.2.7.tar.gz` |
+| Release URL | `https://github.com/luxdefi/evm/archive/refs/tags/v0.2.7.tar.gz` |
 | SHA256 | `c0d63b56031820007cce5fa8ea635628b8b9a5897111290a78b60538838509f8` |
 
 Subnet EVM is the primary VM for creating new EVM-compatible blockchains on Lux. It is a simplified version of Coreth (C-Chain VM), parameterizable for different throughput and gas configurations.
@@ -121,7 +121,7 @@ validatorOnly: false             -- Open to non-validators
 | Alias | `wagmi` |
 | Subnet ID | `28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY` |
 | Homepage | `https://github.com/luxfi/evm` |
-| VM | `evm` (Coreth/Subnet-EVM) |
+| VM | `evm` (Coreth/Lux EVM) |
 | Description | High-throughput testbed for EVM optimizations, parameterized to run at higher capacity than mainnet C-Chain |
 | Maintainer | `z@zoolabs.io` |
 
@@ -264,10 +264,10 @@ lpm list-vms
 # Install a VM by alias
 lpm install --vm blobvm
 lpm install --vm spacesvm
-lpm install --vm subnet-evm
+lpm install --vm evm
 
 # Update a VM to latest version
-lpm update --vm subnet-evm
+lpm update --vm evm
 
 # Install a subnet (installs all referenced VMs)
 lpm install --subnet spaces
@@ -334,5 +334,5 @@ These parameters control Quasar consensus behavior for subnets:
 ---
 
 **Category**: Lux Ecosystem
-**Related**: plugins, lpm, vm-registry, subnets, blobvm, spacesvm, subnet-evm
+**Related**: plugins, lpm, vm-registry, subnets, blobvm, spacesvm, evm
 **Prerequisites**: Lux node, LPM CLI

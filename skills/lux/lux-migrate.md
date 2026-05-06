@@ -5,11 +5,11 @@
 
 ## Overview
 
-Lux Migrate is a **generic blockchain data migration framework** for importing and exporting block data, state, and accounts between Lux VM implementations. It defines Exporter, Importer, and Migrator interfaces with implementations for SubnetEVM (PebbleDB), C-Chain (BadgerDB + RPC), and other Lux chain types. JSONL is the canonical intermediate format.
+Lux Migrate is a **generic blockchain data migration framework** for importing and exporting block data, state, and accounts between Lux VM implementations. It defines Exporter, Importer, and Migrator interfaces with implementations for LuxEVM (PebbleDB), C-Chain (BadgerDB + RPC), and other Lux chain types. JSONL is the canonical intermediate format.
 
 ## When to use
 
-- Migrating blockchain data between SubnetEVM and C-Chain
+- Migrating blockchain data between LuxEVM and C-Chain
 - Exporting blocks or state from PebbleDB/BadgerDB/LevelDB
 - Importing blocks via the `migrate_importBlocks` RPC API
 - Converting genesis files to JSONL for block import
@@ -36,7 +36,7 @@ migrate/
   migrator.go         # Migrator orchestration (source -> dest with options)
   factory.go          # VM-specific Exporter/Importer constructors
   errors.go           # Typed error definitions
-  subnetevm/          # SubnetEVM exporter (PebbleDB reader)
+  subnetevm/          # LuxEVM exporter (PebbleDB reader)
   cchain/             # C-Chain importer (RPC-based)
   pchain/             # Platform chain support (stub)
   xchain/             # Exchange chain support (stub)
@@ -79,7 +79,7 @@ type Migrator interface {
 
 | VM Type | Export | Import | Database |
 |---------|--------|--------|----------|
-| `subnet-evm` | Implemented | Stub | PebbleDB |
+| `evm` | Implemented | Stub | PebbleDB |
 | `c-chain` | Stub | Implemented | BadgerDB + RPC |
 | `p-chain` | Stub | Stub | - |
 | `x-chain` | Stub | Stub | - |
@@ -121,7 +121,7 @@ cd migrate
 go build -o bin/export ./cmd/export/
 go build -o bin/import-rpc ./cmd/import-rpc/
 
-# Export from SubnetEVM PebbleDB
+# Export from LuxEVM PebbleDB
 ./bin/export \
   -db /path/to/pebbledb \
   -output blocks.jsonl \
@@ -178,7 +178,7 @@ go build -o bin/import-jsonl ./cmd/import-jsonl/
 ## Related Skills
 
 - `lux/lux-node.md` -- Node that hosts the migrate_importBlocks API
-- `lux/lux-evm.md` -- SubnetEVM with MigrateAPI endpoint
+- `lux/lux-evm.md` -- LuxEVM with MigrateAPI endpoint
 - `lux/lux-cli.md` -- CLI integration for `lux network export/import data`
 
 ---

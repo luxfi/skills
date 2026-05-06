@@ -29,7 +29,7 @@ The EVM runs as a **plugin binary** loaded by `luxd` (the Lux node). The binary 
 - Building custom stateful precompiles for EVM chains
 - Integrating with C-Chain via JSON-RPC or WebSocket
 - Cross-chain messaging between EVM chains using Warp
-- Running a custom Subnet-EVM with configurable fees, gas limits, and precompiles
+- Running a custom Lux EVM with configurable fees, gas limits, and precompiles
 - Migrating from `coreth` to the unified EVM module
 
 ### Hard Requirements
